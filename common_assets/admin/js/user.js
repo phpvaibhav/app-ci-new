@@ -42,7 +42,7 @@ $("#smart-form-changepass").validate({
             $('#submit').prop('disabled', true);
             $.ajax({
               type        : "POST",
-              url         : base_url+'adminapi/users/'+$(form).attr('action'),
+              url         : base_url+$(form).attr('action'),
               headers     : { 'authToken':authToken},
               data        : $(form).serialize(),
               cache       : false,
@@ -55,7 +55,7 @@ $("#smart-form-changepass").validate({
                 setTimeout(function(){  $('#submit').prop('disabled', false); },4000);
                 if(res.status=='success'){
                   toastr.success(res.message, 'Success', {timeOut: 3000});
-                  setTimeout(function(){ window.location = base_url+'dashboard'; },4000);
+                  setTimeout(function(){window.location.reload(); },4000);
                   //window.location = base_url+'admin/dashboard';
                 }else{
                   toastr.error(res.message, 'Alert!', {timeOut: 4000});
@@ -124,7 +124,7 @@ $(function() {
     var formData = new FormData(this);
     $.ajax({
         type            : "POST",
-        url             : base_url+'adminapi/users/'+$(this).attr('action'),
+        url             : base_url+$(this).attr('action'),
         headers         : { 'authToken': authToken },
         data            : formData, //only input
         processData     : false,
@@ -139,7 +139,8 @@ $(function() {
           setTimeout(function(){  $('#submit').prop('disabled', false); },4000);
           if(res.status=='success'){
             toastr.success(res.message, 'Success', {timeOut: 3000});
-            setTimeout(function(){ window.location = base_url+'profile/'+res.url; },4000);
+            setTimeout(function(){window.location.reload(); },4000);
+            //setTimeout(function(){ window.location = base_url+'profile/'+res.url; },4000);
           }else{
             toastr.error(res.message, 'Alert!', {timeOut: 4000});
           }         

@@ -8,7 +8,7 @@
 
                         </div>
                         <div class="ibox-content">
-                            <form class="form-horizontal" method="post" action="adminapi/users/changePassword" id="smart-form-changepass" enctype="multipart/form-data" novalidate autocomplete="off">
+                            <form class="form-horizontal" method="post" action="apiv1/users/changePassword" id="smart-form-changepass" enctype="multipart/form-data" novalidate autocomplete="off">
                               <!--   <p>Sign in today for more expirience.</p> -->
                                 <div class="form-group">
 

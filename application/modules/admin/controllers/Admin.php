@@ -14,16 +14,19 @@ class Admin extends Common_Back_Controller {
 
     public function index() { 
         $data['title'] = "Login";
+        $data['front_scripts']= array('common_assets/admin/js/login.js');
         $this->load->login_render('login', $data);
     }//End Function
 
     public function signup() { 
         $data['title'] = "Sign up";
+         $data['front_scripts']= array('common_assets/admin/js/login.js');
         $this->load->login_render('signup', $data);
     }//End Function
 
     public function forgot() { 
         $data['title'] = "Forgot";
+         $data['front_scripts']= array('common_assets/admin/js/login.js');
         $this->load->login_render('forgot', $data);
     }//End Function
 

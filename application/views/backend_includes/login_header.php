@@ -23,7 +23,8 @@
     <!-- Toastr style -->
     <link href="<?php echo $common_assets; ?>css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="<?php echo $common_assets; ?>css/style.css" rel="stylesheet">
-    
+     <?php if(!empty($front_styles)) { load_css($front_styles); } //load required page styles 
+     ?>
     <!-- custom -->
     <link rel="stylesheet" type="text/css" href="<?php echo $common_assets; ?>custom/css/custom.css">
 </head>

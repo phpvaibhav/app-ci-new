@@ -1,30 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends CI_Model {
-        var $userPath    ='uploads/users/thumb/';
-        var  $userDefault = 'backend_assets/img/avatars/1.png';
-    //var $table , $column_order, $column_search , $order =  '';
-    var $table = 'users';
-    var $column_order = array('id','fullName','email','userType','contactNumber','status'); //set column field database for datatable orderable
-    var $column_sel = array('id','fullName','email','userType','contactNumber','status','(case when (status = 0) 
-        THEN "Inactive" when (status = 1) 
-        THEN "Active" ELSE
-        "Unknown" 
-        END) as statusShow','(case when (userType = 1) 
-        THEN "Super Admin" when (userType = 2) 
-        THEN "Customer" when (userType = 3) 
-        THEN "Employee" ELSE
-        "Unknown" 
-        END) as userRole','(case when (profileImage = "") 
-        THEN "backend_assets/img/avatars/1.png" ELSE
-        concat("uploads/users/",profileImage) 
-        END) as profileImage'); //set column field database for datatable orderable
+class School_model extends CI_Model {
 
-    var $column_search = array('fullName','email'); //set column field database for datatable searchable 
-    var $order = array('id' => 'desc');  // default order
+    //var $table , $column_order, $column_search , $order =  '';
+    var $table = 'school';
+    var $column_order = array('s.schoolId','s.schoolName','s.schoolEmail','s.status'); //set column field database for datatable orderable
+    var $column_sel = array('s.schoolId','s.schoolName','s.schoolEmail','s.schoolLogo','s.status','(case when (s.status = 0) 
+        THEN "Inactive" when (s.status = 1) 
+        THEN "Active"  ELSE
+        "Unknown" 
+        END) as statusShow'); //set column field database for datatable orderable
+    var $column_search = array('s.schoolName','s.schoolEmail'); //set column field database for datatable searchable 
+    var $order = array('s.schoolId' => 'DESC');  // default order
     var $where = array();
-    var $group_by = 'id'; 
+    var $group_by = 's.schoolId'; 
 
     public function __construct(){
         parent::__construct();
@@ -38,7 +28,10 @@ class User_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from($this->table);
+        $this->db->from('school as s');
+       // $this->db->join('jobType as jt','j.jobTypeId=jt.jobTypeId');
+       // $this->db->join('users as c','c.id=j.customerId','left');
+        //$this->db->join('users as d','d.id=j.driverId','left');
         $i = 0;
         foreach ($this->column_search as $emp) // loop column 
         {
@@ -115,18 +108,13 @@ class User_model extends CI_Model {
 
     public function count_all()
     {
-        $this->db->from($this->table);
+       // $this->db->from($this->table);
+          $this->db->from('school as s');
+      //  $this->db->join('jobType as jt','j.jobTypeId=jt.jobTypeId');
+       // $this->db->join('users as c','c.id=j.customerId','left');
+       // $this->db->join('users as d','d.id=j.driverId','left');
          if(!empty($this->where))
             $this->db->where($this->where); 
         return $this->db->count_all_results();
     }
-
-    public function userDetails($data){
-    	$this->db->select('*');
-    	$this->db->from($this->table);
-    	$this->db->where(array('id'=>$data['id']));
-    	$query = $this->db->get();
-    	return $query->row();
-    }
-
 }

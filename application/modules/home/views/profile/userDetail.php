@@ -2,26 +2,11 @@
 	$backend_assets=base_url().'backend_assets/';  
 	$img 	= $backend_assets.'img/avatars/sunny-big.png';
 	if(!empty($userData['profileImage'])):
-		$img = base_url().'uploads/admin/thumb/'.$userData['profileImage'];
+		//$img = base_url().'uploads/admin/thumb/'.$userData['profileImage'];
+		$img = $userData['profileImage'];
 	endif;
 	$fullName = ucfirst($userData['fullName']);
-	switch ($userData['userType']) {
-		case 1:
-			$userType = 'Super Admin';
-			break;
-		case 2:
-			$userType ='Customer';
-			break;
-		case 3:
-			$userType ='Employee';
-			break;
-		
-		default:
-			$userType ='Unknown';
-			break;
-	}
-
-
+	$userType = $userData['userRole'];
 	 ?>
 <!-- Profile -->
 <div class="row m-b-lg m-t-lg">
@@ -83,7 +68,7 @@
                 <h5>Profile</h5>
             </div>
             <div class="ibox-content">
-				<form class="form-horizontal" method="post" action="adminapi/users/updateUser" id="smart-form-updateuser" enctype="multipart/form-data" novalidate autocomplete="off">
+				<form class="form-horizontal" method="post" action="apiv1/users/updateUser" id="smart-form-updateuser" enctype="multipart/form-data" novalidate autocomplete="off">
 					<input type="hidden" name="userauth" value="<?php echo $this->uri->segment(2); ?>">
 				          <!--   <p>Sign in today for more expirience.</p> -->
 				            <div class="form-group">

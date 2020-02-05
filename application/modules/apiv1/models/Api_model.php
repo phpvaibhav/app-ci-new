@@ -83,29 +83,24 @@ class Api_model extends CI_Model {
     function userInfo($where){
         $userPath    = base_url().USER_AVATAR_PATH;
         $userDefault = base_url().USER_DEFAULT_AVATAR;
-        $this->db->select('id,
-                        id as userId,
-                        fullName,
-                        email,
-                        authToken,
-                        userType,
+        $this->db->select('users.id,
+                        users.id as userId,
+                        users.fullName,
+                        users.email,
+                        users.authToken,
+                        users.roleId,
                         (case when (profileImage = "") 
                         THEN "'.$userDefault.'" ELSE
                         concat("'.$userPath.'",profileImage) 
-                        END) as profileImage,
-                        (case when (userType = 1) 
-                        THEN "Customer" when (userType = 2) 
-                        THEN "Driver" when (userType = 3) 
-                        THEN "Employee" ELSE
-                        "Unknown" 
-                        END) as userRole');
+                        END) as profileImage,user_role.role as userRole');
         $this->db->from(USERS);
+        $this->db->join('user_role','user_role.roleId=users.roleId');
         $this->db->where($where);
         $sql = $this->db->get();
 
         if($sql->num_rows()):
             $user = $sql->row();
-            switch ($user->userType) {
+/*            switch ($user->userType) {
                 case 1:
                     $user->otherInfo =  $this->otherInfo('customerMeta',array('userId'=>$user->id));
                     break;
@@ -116,7 +111,7 @@ class Api_model extends CI_Model {
                 default:
                 $user->otherInfo    =  new stdClass();
                     break;
-            }
+            }*/
             return $user;
         endif;
         return false;

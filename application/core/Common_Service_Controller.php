@@ -8,7 +8,7 @@ class Common_Service_Controller extends REST_Controller{
     
     public function __construct(){
         parent::__construct();
-        error_reporting(E_ALL);
+       error_reporting(E_ALL);
         ini_set('display_errors', 1);
         $this->load->model('api_model'); //load api model model
         $this->load->helper('response_message'); //load api response message helper

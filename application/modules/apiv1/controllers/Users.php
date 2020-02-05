@@ -1,15 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //General service API class 
-class Users extends Common_Admin_Controller{
+class Users extends Common_Service_Controller{
     
     public function __construct(){
         parent::__construct();
+         $this->check_service_auth();
     }
 
     public function changePassword_post()
     {
 
-        $authCheck  = $this->check_admin_service_auth();
+        $authCheck  = $this->check_service_auth();
         $authToken  = $this->authData->authToken;
         $userId     = $this->authData->id;
         $this->load->library('form_validation');
@@ -28,10 +29,10 @@ class Users extends Common_Admin_Controller{
             $npassword  = $this->input->post('npassword');
             $select     = "password";
             $where      = array('id' => $userId); 
-            $admin      = $this->common_model->getsingle('admin', $where,'password');
+            $admin      = $this->common_model->getsingle('users', $where,'password');
             if(password_verify($password, $admin['password'])){
                 $set =array('password'=> password_hash($this->input->post('npassword') , PASSWORD_DEFAULT)); 
-                $update = $this->common_model->updateFields('admin', $set, $where);
+                $update = $this->common_model->updateFields('users', $set, $where);
                 if($update){
                     $res = array();
                     if($update){
@@ -49,7 +50,7 @@ class Users extends Common_Admin_Controller{
        $this->response($response);
     }//End Function
     function updateUser_post(){
-        $authCheck  = $this->check_admin_service_auth();
+        $authCheck  = $this->check_service_auth();
         $authToken  = $this->authData->authToken;
         $userId     = $this->authData->id;
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -66,9 +67,9 @@ class Users extends Common_Admin_Controller{
             $email              =  $this->post('email');
             $fullName           =  $this->post('fullName');
           
-            $isExist = $this->common_model->is_data_exists('admin',array('id'=>$userauth));
+            $isExist = $this->common_model->is_data_exists('users',array('id'=>$userauth));
             if($isExist){
-                $isExistEmail = $this->common_model->is_data_exists('admin',array('id  !='=>$userauth,'email'=>$email));
+                $isExistEmail = $this->common_model->is_data_exists('users',array('id  !='=>$userauth,'email'=>$email));
                 if(!$isExistEmail){
                     //update
                               //user info
@@ -81,7 +82,7 @@ class Users extends Common_Admin_Controller{
 
                         $image = array(); $profileImage = '';
                         if (!empty($_FILES['profileImage']['name'])) {
-                        $folder     = 'admin';
+                        $folder     = 'user';
                         $image      = $this->Image_model->upload_image('profileImage',$folder); //upload media of Seller
                       
                         //check for error
@@ -94,7 +95,7 @@ class Users extends Common_Admin_Controller{
                         if(array_key_exists("image_name",$image)):
                             $profileImage = $image['image_name'];
                               if(!empty($isExist->profileImage)){
-                                 $this->Image_model->delete_image('uploads/admin/',$isExist->profileImage);
+                                 $this->Image_model->delete_image('uploads/user/',$isExist->profileImage);
                               }
                            
                         endif;
@@ -104,7 +105,7 @@ class Users extends Common_Admin_Controller{
                             $userData['profileImage']           =   $profileImage;
                         } 
                     //update
-                    $result = $this->common_model->updateFields('admin',$userData,array('id'=>$userauth));
+                    $result = $this->common_model->updateFields('users',$userData,array('id'=>$userauth));
                    
                     if($result){
                         $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(123),'url'=>$userid);
@@ -121,4 +122,77 @@ class Users extends Common_Admin_Controller{
         }
         $this->response($response);
     }//end function
+    function updateInfo_post(){
+        $authCheck  = $this->check_service_auth();
+        $authToken  = $this->authData->authToken;
+        $userId     = $this->authData->id;
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        if($this->form_validation->run() == FALSE){
+            $response = array('status' => FAIL, 'message' => strip_tags(validation_errors()));
+           
+        }
+        else{
+         
+            $instituteId             =  $this->post('institute');
+            $instituteId           =  decoding($instituteId);
+            $name              =  $this->post('name');
+            $email              =  $this->post('email');
+        
+            $isExist = $this->common_model->is_data_exists('institute',array('instituteId'=>$instituteId));
+            if($isExist){
+                $isExistEmail = $this->common_model->is_data_exists('institute',array('instituteId  !='=>$instituteId,'email'=>$email));
+                if(!$isExistEmail){
+                    //update
+                              //user info
+                        $userData['name']           =   $name;
+                        $userData['email']              =   $email;
+                       // $userData['contactNumber']      =   $this->post('contact');
+                        //user info
+                        // profile pic upload
+                        $this->load->model('Image_model');
+
+                        $image = array(); $profileImage = '';
+                        if (!empty($_FILES['profileImage']['name'])) {
+                        $folder     = 'institute';
+                        $image      = $this->Image_model->upload_image('profileImage',$folder); //upload media of Seller
+                      
+                        //check for error
+                        if(array_key_exists("error",$image) && !empty($image['error'])){
+                            $response = array('status' => FAIL, 'message' => strip_tags($image['error'].'(In user Image)'));
+                           $this->response($response);die;
+                        }
+
+                        //check for image name if present
+                        if(array_key_exists("image_name",$image)):
+                            $profileImage = $image['image_name'];
+                              if(!empty($isExist->profileImage)){
+                                 $this->Image_model->delete_image('uploads/institute/',$isExist->profileImage);
+                              }
+                           
+                        endif;
+
+                        }
+                        if(!empty($logoImage)){
+                            $userData['logo']           =   $logoImage;
+                        } 
+                    //update
+                    $result = $this->common_model->updateFields('institute',$userData,array('instituteId'=>$instituteId));
+                   
+                    if($result){
+                        $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(123),'url'=>$userid);
+                    }else{
+                    $response = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(118),'userDetail'=>array());
+                    }  
+
+                }else{
+                    $response = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(117),'userDetail'=>array());
+                }
+            }else{
+                $response = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(126),'userDetail'=>array()); 
+            }
+        }
+        $this->response($response);
+    }//end function
+
 }//End Class 

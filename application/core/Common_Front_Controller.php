@@ -11,6 +11,8 @@ class Common_Front_Controller extends MX_Controller {
 
     public function __construct(){
         parent::__construct();
+          error_reporting(E_ALL);
+        ini_set('display_errors', 1);
         $this->user_session_key = USER_SESS_KEY; //user session key
         $this->tbl_users        = USERS; //users table
     }
@@ -20,6 +22,7 @@ class Common_Front_Controller extends MX_Controller {
      */
     public function check_user_session(){
         $page_slug          = $this->router->fetch_method();
+
         $allowed_pages      = array('signup','home','index'); //these pages/methods do not require user authentication
         $allowed_control    = 'home'; //methods of this controller does not require authentication
         $current_control    = $this->router->fetch_class(); // get current controller, class = controller
@@ -27,26 +30,30 @@ class Common_Front_Controller extends MX_Controller {
         if(!is_user_logged_in() && (in_array($page_slug,$allowed_pages)) && $current_control == $allowed_control){
             return TRUE; //session is empty and pages is not restricted
         }else{
+             
             //either page is resticted or session exist
             if(!is_user_logged_in()){
-                redirect(''); //redirect to home/login if session not exit
+                redirect('/'); //redirect to home/login if session not exit
             }
             //user session exists
             $user_sess_data = $_SESSION[$this->user_session_key]; //user session array
+           
             $session_u_id   = $user_sess_data['id']; //user ID
             $where          = array('id'=>$session_u_id,'status'=>0); //status:0 means active 
             $check          = $this->common_model->is_data_exists($this->tbl_users,$where);
 
-            if($check===FALSE){
+            if($check === FALSE){
+            
+           // pr($check);
                //user is either deleted or is inactivated
-               $this->logout(); //force logout
+              // $this->logout(); //force logout
             }  
             if(empty($page_slug)){
                return TRUE; //if slug is empty and session is set
             }
             $after_auth     = array('signup','home', 'index'); //restrict access to these pages if session is set
             if(in_array($page_slug,$after_auth) && $current_control == $allowed_control){
-                redirect('dashboard');
+                redirect('institute');
             }else{
                 return TRUE; 
             }  
@@ -58,9 +65,10 @@ class Common_Front_Controller extends MX_Controller {
      */
     function logout($is_redirect=TRUE){ 
         // instead of destroying whole session data, we will just unset biz user session data
+       // pr($is_redirect);
         unset($_SESSION[$this->user_session_key]); 
         if($is_redirect)
-            redirect('/');  //redirect only when $is_redirect is set to TRUE
+            redirect();  //redirect only when $is_redirect is set to TRUE
     }//End function
     /**
      * User authentication for ajax

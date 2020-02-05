@@ -1,28 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Vehiclehistory_model extends CI_Model {
+class Service_model extends CI_Model {
 
     //var $table , $column_order, $column_search , $order =  '';
-    var $table          = 'vehicleHistory';
-    var $column_order   = array('v.historyId','v.vehicleId','v.vjobTypeId','v.date','v.attachment','v.fileType','v.status','vj.type'); //set column field database for datatable orderable
-    var $column_sel     = array('v.historyId',
-        'v.vehicleId',
-        'v.vjobTypeId',
-        'v.date',
-        'v.attachment',
-        'v.fileType',
-        'v.status',
-        '(case when (v.status = 0) 
-        THEN "Inactive" when (v.status = 1) 
-        THEN "Active" ELSE
+    var $table          = 'service';
+    var $column_order   = array('s.serviceId','s.productName','s.vendor','s.serialNumber','s.purchaseDate','s.contactNumber'); //set column field database for datatable orderable
+    var $column_sel     = array('s.serviceId',
+        's.productName',
+        's.vendor',
+        's.serialNumber',
+        's.purchaseDate',
+        's.contactNumber',
+        's.comment',
+        's.status',
+        '(case when (s.status = 0) 
+        THEN "Pending" when (s.status = 1) 
+        THEN "In Progress" when (s.status = 2) 
+        THEN "Complete" ELSE
         "Unknown" 
-        END) as statusShow',
-        'vj.type'); //set column field database for datatable orderable
-    var $column_search  = array('v.vehicleId','v.historyId','v.vjobTypeId','v.date','v.attachment','v.status','vj.type'); //set column field database for datatable searchable 
-    var $order          = array('DATE(v.crd)' => 'DESC');  // default order
+        END) as statusShow'); //set column field database for datatable orderable
+    var $column_search  = array('s.productName','s.vendor'); //set column field database for datatable searchable 
+    var $order          = array('s.serviceId' => 'ASC');  // default order
     var $where          = array();
-    var $group_by       = 'v.historyId'; 
+    var $group_by       = 's.serviceId'; 
 
     public function __construct(){
         parent::__construct();
@@ -36,15 +37,13 @@ class Vehiclehistory_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from('vehicleHistory as v');
-        $this->db->join('vehicleJobType as vj','vj.vjobTypeId=v.vjobTypeId','left');
-  
+        $this->db->from('service as s');
         $i = 0;
         foreach ($this->column_search as $emp) // loop column 
         {
             if(isset($_POST['search']['value']) && !empty($_POST['search']['value'])){
             $_POST['search']['value'] = $_POST['search']['value'];
-        } else
+            } else
             $_POST['search']['value'] = '';
             if($_POST['search']['value']) // if datatable send POST for search
             {
@@ -77,25 +76,23 @@ class Vehiclehistory_model extends CI_Model {
         }
        
     }//End function
-
     function get_list()
     {
         $this->_get_query();
         if(isset($_POST['length']) && $_POST['length'] < 1) {
-            $_POST['length'] = '10';
-        } else{
-        	$_POST['length'] = isset($_POST['length']) ? $_POST['length'] :10;
-        } 
-        if(isset($_POST['start']) && $_POST['start'] > 1) {
-            $_POST['start']  = $_POST['start'];
+            $_POST['length']= '10';
+        }else{
+        	$_POST['length']= isset($_POST['length']) ? $_POST['length'] :10;
         }
-        $_POST['start']      = isset($_POST['start']) ? $_POST['start']:0;
+        if(isset($_POST['start']) && $_POST['start'] > 1) {
+            $_POST['start']= $_POST['start'];
+        }
+        $_POST['start']= isset($_POST['start']) ? $_POST['start']:0;
         $this->db->limit($_POST['length'], $_POST['start']);
         //print_r($_POST);die;
         $query = $this->db->get(); //lq();
         return $query->result();
     }//End function
-
     function count_filtered()
     {
         $this->_get_query();
@@ -104,10 +101,16 @@ class Vehiclehistory_model extends CI_Model {
     }//End function
     public function count_all()
     {
-        $this->db->from('vehicleHistory as v');
-        $this->db->join('vehicleJobType as vj','vj.vjobTypeId=v.vjobTypeId','left');
-        if(!empty($this->where))
-        $this->db->where($this->where); 
+        $this->db->from($this->table);
+         if(!empty($this->where))
+            $this->db->where($this->where); 
         return $this->db->count_all_results();
     }//End function
-}//End Class
+    public function serviceDetails($data){
+    	$this->db->select('*');
+    	$this->db->from('service');
+    	$this->db->where(array('serviceId'=>$data['serviceId']));
+    	$query = $this->db->get();
+    	return $query->row();
+    }//End function
+}//End class

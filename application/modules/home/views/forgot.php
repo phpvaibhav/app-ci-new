@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="ibox-content">
 
-                    <h2 class="font-bold">Forgot password |Admin</h2>
+                    <h2 class="font-bold">Forgot password</h2>
 
                     <p>
                         Enter your email address and your password will be reset and emailed to you.

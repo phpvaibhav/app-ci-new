@@ -1,7 +1,7 @@
 <div class="loginColumns animated fadeInDown">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="font-bold">Welcome to <?php echo SITE_NAME; ?>| Admin</h2>
+            <h2 class="font-bold">Welcome to <?php echo SITE_NAME; ?></h2>
             <p>
                 Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
             </p>
@@ -29,14 +29,14 @@
                 </div>
                     <button type="submit" class="btn btn-primary block full-width m-b" id="submit" >Login</button>
 
-                    <a href="<?php echo base_url().'admin/forgot' ?>">
+                    <a href="<?php echo base_url().'home/forgot' ?>">
                         <small>Forgot password?</small>
                     </a>
 
                     <p class="text-muted text-center">
                         <small>Do not have an account?</small>
                     </p>
-                  <!--   <a class="btn btn-sm btn-white btn-block" href="<?= base_url().'admin/signup';?>">Create an account</a> -->
+                    <a class="btn btn-sm btn-white btn-block" href="<?= base_url().'home/signup';?>">Create an account</a>
                 </form>
                 <p class="m-t">
                     <small><?php echo SITE_NAME; ?> &copy; <?= date('Y')?></small>

@@ -237,33 +237,41 @@ class Common_model extends CI_Model {
         }
     } //end function
     function userInfo($where){
-        $userPath    = base_url().USER_AVATAR_PATH.'thumb/';
+        $userPath    = base_url().USER_AVATAR_PATH;
         $userDefault = base_url().USER_DEFAULT_AVATAR;
-        $this->db->select('id,
-            id as userId,
-            fullName,
-            email,
-            authToken,
-            userType,
-            (case when (profileImage = "") 
-            THEN "'.$userDefault.'" ELSE
-            concat("'.$userPath.'",profileImage) 
-            END) as profileImage,
-            (case when (userType = 1) 
-            THEN "Super Admin" when (userType = 2) 
-            THEN "Customer" when (userType = 3) 
-            THEN "Employee" ELSE
-            "Unknown" 
-            END) as userRole');
+        $this->db->select('users.id,
+                        users.id as userId,
+                        users.fullName,
+                        users.email,
+                        users.authToken,users.contactNumber,
+                        users.roleId,
+                        (case when (profileImage = "") 
+                        THEN "'.$userDefault.'" ELSE
+                        concat("'.$userPath.'",profileImage) 
+                        END) as profileImage,user_role.role as userRole');
         $this->db->from(USERS);
+        $this->db->join('user_role','user_role.roleId=users.roleId');
         $this->db->where($where);
         $sql = $this->db->get();
 
         if($sql->num_rows()):
-            return $sql->row_array();
+            $user = $sql->row_array();
+/*            switch ($user->userType) {
+                case 1:
+                    $user->otherInfo =  $this->otherInfo('customerMeta',array('userId'=>$user->id));
+                    break;
+                case 2:
+                    $user->otherInfo =  $this->otherInfo('driverMeta',array('userId'=>$user->id));
+                    break;
+                
+                default:
+                $user->otherInfo    =  new stdClass();
+                    break;
+            }*/
+            return $user;
         endif;
         return false;
-    } //End Function usersInfo 
+    } //End Function usersInfo
     function adminInfo($where){
         $userPath    = base_url().ADMIN_AVATAR_PATH.'thumb/';
         $userDefault = base_url().ADMIN_DEFAULT_AVATAR;

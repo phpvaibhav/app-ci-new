@@ -21,7 +21,8 @@ $backend_assets =  base_url().'backend_assets/';
         <!-- JQUERY VALIDATE -->
     <script src="<?php echo $common_assets; ?>js/plugins/validate/jquery.validate.min.js"></script>
     <script src="<?php echo $common_assets; ?>custom/js/common.js"></script>
-    <script src="<?php echo $common_assets; ?>admin/js/login.js"></script>
+   <!--  <script src="<?php echo $common_assets; ?>admin/js/login.js"></script> -->
+     <?php if(!empty($front_scripts)) { load_js($front_scripts);} //load required page scripts ?>
     <script src="<?php echo $common_assets; ?>custom/js/custom.js"></script>
   </body>
 </html>

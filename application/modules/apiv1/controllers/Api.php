@@ -10,27 +10,34 @@ class Api extends Common_Service_Controller{
 
     // For Registration 
     function registration_post(){
-        
+        $this->form_validation->set_rules('name', 'institute name', 'trim|required|min_length[2]');
+        $this->form_validation->set_rules('firstName', 'first name', 'trim|required|min_length[2]');
+        $this->form_validation->set_rules('lastName', 'last name', 'trim|required|min_length[2]');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',
             array('is_unique' => 'Email already exist')
         );
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|max_length[20]');
         $this->form_validation->set_rules('contact', 'Contact Number', 'trim|required|min_length[10]|max_length[20]');
-        $this->form_validation->set_rules('fullName', 'full Name', 'trim|required|min_length[2]');
+        
         if($this->form_validation->run() == FALSE){
             $response = array('status' => FAIL, 'message' => strip_tags(validation_errors()));
             $this->response($response);
         }
         else{
 
-            $email                          = $this->post('email');
-            $fullName                       = $this->post('fullName');
-            $authtoken                      = $this->api_model->generate_token();
-            $passToken                      = $this->api_model->generate_token();
+            $name                          = $this->post('name');
+            $email                         = $this->post('email');
+            $firstName                     = $this->post('firstName');
+            $lastName                      = $this->post('lastName');
+            $fullName                      = $firstName." ".$lastName;
+            $authtoken                     = $this->api_model->generate_token();
+            $passToken                     = $this->api_model->generate_token();
             //user info
+            $userData['firstName']           =  $firstName;
+            $userData['lastName']           =   $lastName;
             $userData['fullName']           =   $fullName;
             $userData['email']              =   $email;
-            $userData['userType']           =   2;
+            $userData['roleId']             =   1;
             $userData['contactNumber']      =   $this->post('contact');
             $userData['authToken']          =   $authtoken;
             $userData['password']           =   password_hash($this->post('password'), PASSWORD_DEFAULT);
@@ -63,17 +70,11 @@ class Api extends Common_Service_Controller{
 
                switch ($result['regType']){
                     case "NR": // Normal registration
-                    $this->StoreSession($result['returnData']);
+                    //$this->StoreSession($result['returnData']);
                     //send mail
-                        $maildata['title']    = $result['returnData']->fullName." been invited to join Interface service";
-                        $maildata['message']  = "<table><tr><td>Name</td><td>".$result['returnData']->fullName."</td></tr><tr><td>Email</td><td>".$result['returnData']->email."</td></tr></table>";
-                        $subject    = "Create customer";
-                        $message    = $this->load->view('emails/email',$maildata,TRUE);
-                        $emails     = $this->common_model->adminEmails();
-                        if(!empty($emails)){
-                       // $this->load->library('smtp_email');
-                       // $this->smtp_email->send_mail_multiple($emails,$subject,$message);
-                        }
+                    $instituteId = $this->common_model->insertData('institute',array('name'=>$name,'userId'=>$result['returnData']->id));
+                    $result['returnData']->instituteId = $instituteId;
+                    $this->StoreSession($result['returnData']);
                     //send mail
                     $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(110), 'messageCode'=>'normal_reg','users'=>$result['returnData']);
                     break;
@@ -108,9 +109,14 @@ class Api extends Common_Service_Controller{
             $data['authToken']      = $authtoken;
             $result                 = $this->api_model->login($data,$authtoken);
             if(is_array($result)){
+               // pr($result);
+                  
                 switch ($result['returnType']) {
+                 
                     case "SL":
-                     
+                      $institute = $this->common_model->getsingle('institute',array('userId'=>$result['userInfo']->id));
+                    $result['userInfo']->instituteId = $institute['instituteId'];
+                    $this->StoreSession($result['userInfo']);
                     $response = array('status' => SUCCESS, 'message' => ResponseMessages::getStatusCodeMessage(106), 'users' => $result['userInfo']);
                     break;
                     case "WP":
@@ -156,4 +162,19 @@ class Api extends Common_Service_Controller{
         }
         $this->response($response);
     } //End function
+        // Session store value for frontEnd
+    function StoreSession($userData){
+        $session_data['id']             = $userData->userId;
+        $session_data['instituteId']    = $userData->instituteId;
+        $session_data['userId']         = $userData->userId;
+        $session_data['fullName']       = $userData->fullName;
+        $session_data['email']          = $userData->email;
+        $session_data['roleId']       = $userData->roleId;
+        $session_data['userRole']       = $userData->userRole;
+        $session_data['image']          = $userData->profileImage;
+        $session_data['isLogin']        = TRUE ;
+      //  pr( $session_data);
+        $_SESSION[USER_SESS_KEY]        = $session_data;   
+        return TRUE;
+    }// End Function 
 }//End Class 

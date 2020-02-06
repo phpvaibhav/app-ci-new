@@ -64,3 +64,4 @@ $route['institute']					= 'home/institute';
 $route['user_profile/(:any)'] 			= 'home/users/userDetail/$1';
 $route['user_change_password/(:any)'] 	= 'home/users/changePassword/$1';
 $route['instituteInfo'] 			= 'home/users/instituteInfo';
+$route['teachers'] 					= 'home/teacher/index';

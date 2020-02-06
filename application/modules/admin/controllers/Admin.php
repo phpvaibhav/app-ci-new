@@ -42,6 +42,7 @@ class Admin extends Common_Back_Controller {
     public function dashboard() {
         $data['parent']     = "Dashboard";
         $data['title']      = '<i class="fa-fw fa fa-home"></i> Dashboard';
+        $data['institute_count']  = $this->common_model->get_total_count('institute');
         $this->load->admin_render('dashboard', $data, '');
     }//End Function
 

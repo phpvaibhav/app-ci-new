@@ -154,12 +154,12 @@ class Users extends Common_Service_Controller{
 
                         $image = array(); $profileImage = '';
                         if (!empty($_FILES['profileImage']['name'])) {
-                        $folder     = 'institute';
+                        $folder     = 'logo';
                         $image      = $this->Image_model->upload_image('profileImage',$folder); //upload media of Seller
                       
                         //check for error
                         if(array_key_exists("error",$image) && !empty($image['error'])){
-                            $response = array('status' => FAIL, 'message' => strip_tags($image['error'].'(In user Image)'));
+                            $response = array('status' => FAIL, 'message' => strip_tags($image['error'].'(In logo Image)'));
                            $this->response($response);die;
                         }
 
@@ -167,7 +167,7 @@ class Users extends Common_Service_Controller{
                         if(array_key_exists("image_name",$image)):
                             $profileImage = $image['image_name'];
                               if(!empty($isExist->profileImage)){
-                                 $this->Image_model->delete_image('uploads/institute/',$isExist->profileImage);
+                                 $this->Image_model->delete_image('uploads/logo/',$isExist->profileImage);
                               }
                            
                         endif;

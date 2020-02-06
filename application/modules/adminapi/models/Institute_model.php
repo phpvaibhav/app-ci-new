@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class School_model extends CI_Model {
+class Institute_model extends CI_Model {
 
     //var $table , $column_order, $column_search , $order =  '';
-    var $table = 'school';
-    var $column_order = array('s.schoolId','s.schoolName','s.schoolEmail','s.status'); //set column field database for datatable orderable
-    var $column_sel = array('s.schoolId','s.schoolName','s.schoolEmail','s.schoolLogo','s.status','(case when (s.status = 0) 
-        THEN "Inactive" when (s.status = 1) 
+    var $table = 'institute';
+    var $column_order = array('i.instituteId','i.name','i.email','i.phoneNumber','u.fullName','i.status',); //set column field database for datatable orderable
+    var $column_sel = array('i.instituteId','i.name','i.email','i.logo','i.phoneNumber','i.description','u.fullName as createdBy','i.status','i.status','(case when (i.status = 0) 
+        THEN "Inactive" when (i.status = 1) 
         THEN "Active"  ELSE
         "Unknown" 
         END) as statusShow'); //set column field database for datatable orderable
-    var $column_search = array('s.schoolName','s.schoolEmail'); //set column field database for datatable searchable 
-    var $order = array('s.schoolId' => 'DESC');  // default order
+    var $column_search = array('i.name','i.email'); //set column field database for datatable searchable 
+    var $order = array('i.instituteId' => 'DESC');  // default order
     var $where = array();
-    var $group_by = 's.schoolId'; 
+    var $group_by = 'i.instituteId'; 
 
     public function __construct(){
         parent::__construct();
@@ -28,8 +28,8 @@ class School_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from('school as s');
-       // $this->db->join('jobType as jt','j.jobTypeId=jt.jobTypeId');
+        $this->db->from('institute as i');
+        $this->db->join('users as u','u.id=i.userId');
        // $this->db->join('users as c','c.id=j.customerId','left');
         //$this->db->join('users as d','d.id=j.driverId','left');
         $i = 0;
@@ -108,11 +108,8 @@ class School_model extends CI_Model {
 
     public function count_all()
     {
-       // $this->db->from($this->table);
-          $this->db->from('school as s');
-      //  $this->db->join('jobType as jt','j.jobTypeId=jt.jobTypeId');
-       // $this->db->join('users as c','c.id=j.customerId','left');
-       // $this->db->join('users as d','d.id=j.driverId','left');
+        $this->db->from('institute as i');
+        $this->db->join('users as u','u.id=i.userId');
          if(!empty($this->where))
             $this->db->where($this->where); 
         return $this->db->count_all_results();

@@ -30,6 +30,7 @@ class Api extends Common_Service_Controller{
             $firstName                     = $this->post('firstName');
             $lastName                      = $this->post('lastName');
             $fullName                      = $firstName." ".$lastName;
+            $contact                      = $this->post('contact');
             $authtoken                     = $this->api_model->generate_token();
             $passToken                     = $this->api_model->generate_token();
             //user info
@@ -72,7 +73,7 @@ class Api extends Common_Service_Controller{
                     case "NR": // Normal registration
                     //$this->StoreSession($result['returnData']);
                     //send mail
-                    $instituteId = $this->common_model->insertData('institute',array('name'=>$name,'userId'=>$result['returnData']->id));
+                    $instituteId = $this->common_model->insertData('institute',array('name'=>$name,'email'=>$email,'phoneNumber'=>$contact,'userId'=>$result['returnData']->id));
                     $result['returnData']->instituteId = $instituteId;
                     $this->StoreSession($result['returnData']);
                     //send mail

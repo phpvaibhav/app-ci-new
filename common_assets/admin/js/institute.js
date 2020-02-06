@@ -1,4 +1,4 @@
-var school_list = $('#school_list').DataTable({ 
+var institute_list = $('#institute_list').DataTable({ 
                 "processing": true, //Feature control the processing indicator.
                 "serverSide": true, //Feature control DataTables' servermside processing mode.
                 "order": [], //Initial no order.
@@ -16,7 +16,7 @@ var school_list = $('#school_list').DataTable({
                 },
                 // Load data for the table's content from an Ajax source
                 "ajax": {
-                    "url": base_url+"adminapi/school/schoolList",
+                    "url": base_url+"adminapi/institute/instituteList",
                     "type": "POST",
                     "dataType": "json",
                     "headers": { 'authToken':authToken},

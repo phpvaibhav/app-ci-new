@@ -216,7 +216,8 @@ $("#form-register-front").validate({// Rules for form validation
   },
   // Do not change code below
   errorPlacement : function(error, element) {
-    error.insertAfter(element.parent());
+   // error.insertAfter(element.parent());
+    error.insertAfter(element.children());
   }
 });
 //date 

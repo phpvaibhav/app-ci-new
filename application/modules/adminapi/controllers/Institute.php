@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //General service API class 
-class School extends Common_Admin_Controller{
+class Institute extends Common_Admin_Controller{
     
     public function __construct(){
         parent::__construct();
         $this->check_admin_service_auth();
     }
-    public function schoolList_post(){
+    public function instituteList_post(){
         $this->load->helper('text');
-        $this->load->model('school_model');
-        $this->school_model->set_data();
-        $list   = $this->school_model->get_list();
+        $this->load->model('institute_model');
+        $this->institute_model->set_data();
+        $list   = $this->institute_model->get_list();
         
         $data   = array();
         $no     = $_POST['start'];
@@ -18,11 +18,13 @@ class School extends Common_Admin_Controller{
         $action = '';
         $no++;
         $row        = array();
-         $imageLink   = base_url().'company_assets/schoolLogo/'.$serData->schoolLogo;
+        $imageLink   = base_url().(!empty($serData->logo)? 'uploads/logo/'.$serData->logo : 'common_assets/img/placeholder-logo.png');
         $row[]      = $no;
-        $row[] = '<img src='.$imageLink.' alt="'.$serData->schoolName.'" class="img-sm img-rounded" >';
-        $row[]      = display_placeholder_text($serData->schoolName); 
-        $row[]      = display_placeholder_text($serData->schoolEmail); 
+        $row[] = '<img src='.$imageLink.' alt="'.$serData->name.'" class="img-sm img-rounded" >';
+        $row[]      = display_placeholder_text($serData->name); 
+        $row[]      = display_placeholder_text($serData->email); 
+        $row[]      = display_placeholder_text($serData->phoneNumber); 
+        $row[]      = display_placeholder_text($serData->createdBy); 
         switch ($serData->status) {
          
             case 1:
@@ -40,9 +42,9 @@ class School extends Common_Admin_Controller{
             $link      ='javascript:void(0)';
             $action .= "";
        
-       
+       $action .= "NA";
        // $userLink = "javascript:void(0);";
-        $action .= '<a class="btn btn-success btn-bitbucket btn-outline"><i class="fa fa-eye" aria-hidden="true"></i></a>';   
+       // $action .= '<a class="btn btn-success btn-bitbucket btn-outline"><i class="fa fa-eye" aria-hidden="true"></i></a>';   
 
         $row[]  = $action;
         $data[] = $row;
@@ -51,8 +53,8 @@ class School extends Common_Admin_Controller{
 
         $output = array(
             "draw"              => $_POST['draw'],
-            "recordsTotal"      => $this->school_model->count_all(),
-            "recordsFiltered"   => $this->school_model->count_filtered(),
+            "recordsTotal"      => $this->institute_model->count_all(),
+            "recordsFiltered"   => $this->institute_model->count_filtered(),
             "data"              => $data,
         );
         //output to json format

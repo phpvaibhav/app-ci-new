@@ -57,6 +57,7 @@ $route['hidesignup']				= 'admin/signup';
 $route['dashboard']					= 'admin/dashboard';
 $route['profile/(:any)'] 			= 'admin/users/userDetail/$1';
 $route['change_password/(:any)'] 	= 'admin/users/changePassword/$1';
+$route['institute-all']					= 'admin/institute/index';
 
 //User
 $route['institute']					= 'home/institute';

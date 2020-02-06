@@ -26,6 +26,22 @@
                         	<input type="text"  name="email" placeholder=" Email" id="email" value="<?= $info['email'];?>" class="form-control" >
                          <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
                         </div>
+                    </div> 
+                    <div class="form-group">
+
+                        <div class="col-lg-12">
+                            <label class="control-label">Phone Number</label>
+                            <input type="text"  name="phoneNumber" placeholder="Phone Number" id="phoneNumber" value="<?= $info['phoneNumber'];?>" class="form-control" >
+                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                        </div>
+                    </div> 
+                    <div class="form-group">
+
+                        <div class="col-lg-12">
+                            <label class="control-label">Description</label>
+                            <textarea name="description" class="form-control"><?= $info['description'];?></textarea>
+                         <!-- <span class="help-block m-b-none">Example block-level help text here.</span> -->
+                        </div>
                     </div>
                   <!--   <div class="form-group">
 
@@ -46,14 +62,14 @@
                                 <!-- image -->
                      <div class="form-group">
                         <div class="note">
-                            <strong>Note:</strong> Image dimension should be within 250X56.
+                            <strong>Note:</strong> Image dimension should be within 200X60.
                             </div>
                         <div class="col-lg-12">
                         	<?php 
 										$logo = base_url().'common_assets/img/meteor_logo.png';
 										if(!empty($info['logo'])){
 											//if(file_exists(base_url().'company_assets/logo/'.$companyinfo['logo'])){
-											$logo = base_url().'uploads/institute/'.$info['logo'];
+											$logo = base_url().'uploads/logo/'.$info['logo'];
 											//}
 										}
 

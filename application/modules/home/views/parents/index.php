@@ -12,7 +12,7 @@
 	        </div>
         	<div class="ibox-content">
             	<div class="table-responsive">
-        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/teacher/list" >
+        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/parents/list" >
         				<thead>
 					        <tr>
 					            <th>S.No.</th>
@@ -21,7 +21,7 @@
 					            <th>Last Name</th>
 					            <th>Email</th>
 					            <th>Contact</th>
-					            <th>Approval</th>
+					            <th>Student</th>
 					            <th>Status</th>
 					            <th>Action</th>
 					        </tr>
@@ -36,7 +36,7 @@
 					            <th>Last Name</th>
 					            <th>Email</th>
 					            <th>Contact</th>
-					            <th>Approval</th>
+					            <th>Student</th>
 					            <th>Status</th>
 					            <th>Action</th>
 					        </tr>
@@ -53,12 +53,12 @@
     <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Teacher</h4>
+                <h4 class="modal-title"><?= $title; ?></h4>
             </div>
             <!-- form -->
             <form class="form-horizontal"method="post" action="apiv1/customer/registration" id="form-customer" enctype="multipart/form-data" novalidate autocomplete="off">
             <div class="modal-body">
-            	<input type="hidden" name="roleId" value="2">
+            	<input type="hidden" name="roleId" value="5">
             	<input type="hidden" name="instituteId" value="<?= $_SESSION[USER_SESS_KEY]['instituteId'];?>">
             	<!-- form set -->
             	<div class="row">

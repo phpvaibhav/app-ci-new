@@ -91,6 +91,16 @@
                 <li>
                     <a href="<?= base_url().'teachers';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teachers') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
                 </li>
+                
+                <li>
+                    <a href="<?= base_url().'staff';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'staff') ? 'active' : '' ?>"><i class="fa fa-group"></i> <span class="nav-label">Staff</span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url().'students';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'students') ? 'active' : '' ?>"><i class="fa fa-child"></i> <span class="nav-label">Students</span></a>
+                </li>
+                <li>
+                    <a href="<?= base_url().'parents';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><i class="fa fa-home"></i> <span class="nav-label">Parents</span></a>
+                </li>
 
              
 

@@ -42,6 +42,10 @@ class Home extends Common_Front_Controller {
     public function institute() {
       //echo "fgdg";
      $data['title'] = "institute";
+     $data['teacher_count']  = $this->common_model->get_total_count('institute_teacher',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+     $data['staff_count']  = $this->common_model->get_total_count('institute_staff',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+     $data['student_count']  = $this->common_model->get_total_count('institute_student',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+     $data['parents_count']  = $this->common_model->get_total_count('institute_parents',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
       $this->load->front_render('dashboard', $data, '');
     }//End Function
    

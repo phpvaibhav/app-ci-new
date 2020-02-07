@@ -86,7 +86,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="<?= base_url().'dashboard';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'dashboard') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                    <a href="<?= base_url().'institute';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
                 <li>
                     <a href="<?= base_url().'teachers';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teachers') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>

@@ -110,8 +110,8 @@ define('ADMIN_AVATAR_PATH', 'uploads/admin/'); //user avatar
 define('ADMIN_DEFAULT_AVATAR', 'common_assets/img/avatars/1.png'); //user placeholder image
 
 //Title, Site name, Copyright etc
-define('SITE_NAME','CG ROBINSON`S'); //your project name
-define('COPYRIGHT',' &copy; ' . date('Y'). ',New Project. All rights reserved.');
+define('SITE_NAME','Tunecademy'); //your project name
+define('COPYRIGHT',' &copy; ' . date('Y'). ',Tunecademy. All rights reserved.');
 define('INFO_EMAIL','info@project.com'); //your project name
 
 

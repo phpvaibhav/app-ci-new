@@ -8,10 +8,14 @@ class MY_Loader extends MX_Loader {
     function front_render($template_name, $vars = array(), $page_script = '') {
         $user_sess_data                 = $_SESSION[USER_SESS_KEY]; 
         $session_u_id                   = $user_sess_data['id']; //user ID
+
+        $instituteId = $_SESSION[USER_SESS_KEY]['instituteId'];
         $where                          = array('users.id'=>$session_u_id,'users.status'=>1);//status:0 means active 
         $uData                          = $this->common_model->userInfo($where);
+        $company                          = $this->common_model->getsingle('institute',array('instituteId'=>$instituteId));
        /// pr( $uData  );
         $vars['user']                   =  $uData;
+        $vars['company']                   =  $company;
         $this->view('frontend_includes/front_header', $vars);
         $this->view($template_name, $vars);
         $this->view('frontend_includes/front_footer', $vars);

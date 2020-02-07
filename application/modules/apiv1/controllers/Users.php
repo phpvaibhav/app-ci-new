@@ -122,24 +122,29 @@ class Users extends Common_Service_Controller{
         }
         $this->response($response);
     }//end function
-    function updateInfo_post(){
-        $authCheck  = $this->check_service_auth();
-        $authToken  = $this->authData->authToken;
-        $userId     = $this->authData->id;
+    function instituteInfo_post(){
+
+       $authCheck  = $this->check_service_auth();
+       $authToken  = $this->authData->authToken;
+       $userId     = $this->authData->id;
         $this->form_validation->set_rules('name', 'name', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('phoneNumber', 'phoneNumber', 'trim|required');
         if($this->form_validation->run() == FALSE){
             $response = array('status' => FAIL, 'message' => strip_tags(validation_errors()));
            
         }
         else{
-         
-            $instituteId             =  $this->post('institute');
+        
+            $instituteId             =  $this->post('instituteId');
             $instituteId           =  decoding($instituteId);
             $name              =  $this->post('name');
             $email              =  $this->post('email');
+            $phoneNumber              =  $this->post('phoneNumber');
+            $description              =  $this->post('description');
         
             $isExist = $this->common_model->is_data_exists('institute',array('instituteId'=>$instituteId));
+            //   pr($isExist);
             if($isExist){
                 $isExistEmail = $this->common_model->is_data_exists('institute',array('instituteId  !='=>$instituteId,'email'=>$email));
                 if(!$isExistEmail){
@@ -147,15 +152,17 @@ class Users extends Common_Service_Controller{
                               //user info
                         $userData['name']           =   $name;
                         $userData['email']              =   $email;
+                        $userData['phoneNumber']              =   $phoneNumber;
+                        $userData['description']              =   $description;
                        // $userData['contactNumber']      =   $this->post('contact');
                         //user info
                         // profile pic upload
                         $this->load->model('Image_model');
 
-                        $image = array(); $profileImage = '';
-                        if (!empty($_FILES['profileImage']['name'])) {
+                        $image = array(); $logoImage = '';
+                        if (!empty($_FILES['logoImage']['name'])) {
                         $folder     = 'logo';
-                        $image      = $this->Image_model->upload_image('profileImage',$folder); //upload media of Seller
+                        $image      = $this->Image_model->upload_image('logoImage',$folder,60,200); //upload media of Seller
                       
                         //check for error
                         if(array_key_exists("error",$image) && !empty($image['error'])){
@@ -165,9 +172,9 @@ class Users extends Common_Service_Controller{
 
                         //check for image name if present
                         if(array_key_exists("image_name",$image)):
-                            $profileImage = $image['image_name'];
-                              if(!empty($isExist->profileImage)){
-                                 $this->Image_model->delete_image('uploads/logo/',$isExist->profileImage);
+                            $logoImage = $image['image_name'];
+                              if(!empty($isExist->logo)){
+                                 $this->Image_model->delete_image('uploads/logo/',$isExist->logo);
                               }
                            
                         endif;
@@ -180,7 +187,7 @@ class Users extends Common_Service_Controller{
                     $result = $this->common_model->updateFields('institute',$userData,array('instituteId'=>$instituteId));
                    
                     if($result){
-                        $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(123),'url'=>$userid);
+                        $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(123),'url'=>$userId);
                     }else{
                     $response = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(118),'userDetail'=>array());
                     }  

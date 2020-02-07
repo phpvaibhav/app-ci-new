@@ -8,7 +8,7 @@
 
             </div>
             <div class="ibox-content">
-                <form class="form-horizontal"method="post" action="schoolinfo" id="smart-form-schoolinfo" enctype="multipart/form-data" novalidate autocomplete="off">
+                <form class="form-horizontal"method="post" action="apiv1/users/instituteInfo" id="smart-form-updateInfo" enctype="multipart/form-data" novalidate autocomplete="off">
                 	<input type="hidden" name="instituteId" value="<?= encoding($info['instituteId']);?>" >
                   <!--   <p>Sign in today for more expirience.</p> -->
                     <div class="form-group">

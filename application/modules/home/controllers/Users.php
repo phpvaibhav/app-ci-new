@@ -33,7 +33,7 @@ class Users extends Common_Front_Controller {
         $data['title'] = "instituteInfo";
         $data['info'] = $this->common_model->getsingle('institute',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
         $data['front_styles'] = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css');
-        $data['front_scripts'] = array('common_assets/js/plugins/jasny/jasny-bootstrap.min.js');
+        $data['front_scripts'] = array('common_assets/js/plugins/jasny/jasny-bootstrap.min.js','common_assets/user/js/institute.js');
         $this->load->front_render('schoolInfo', $data, '');
     }//End Function 
 }//End Class

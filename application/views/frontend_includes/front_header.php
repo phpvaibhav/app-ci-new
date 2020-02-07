@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?php echo SITE_NAME.' | Admin' ?></title>
+    <title><?php echo (isset($company)  ? $company['name']:SITE_NAME).' | Admin' ?></title>
     <?php
         $common_assets =  base_url().'common_assets/';
         $backend_assets =  base_url().'backend_assets/';
@@ -45,7 +45,15 @@
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <div class="logo-element-logo">
-               <img src="<?php echo base_url().'common_assets/img/meteor_logo.png'; ?>" class="m-t" width="200" height="50" alt="">
+                <?php 
+                    $logo = base_url().'common_assets/img/meteor_logo.png';
+                    if(isset($company) && !empty($company['logo'])){
+                        $logo =  base_url().'uploads/logo/large/'.$company['logo'];
+                    }
+
+                ?>
+            
+               <img src="<?php echo $logo; ?>" class="m-t" width="200" height="50" alt="">
             </div>
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
@@ -72,7 +80,7 @@
                     </div>
                     <div class="logo-element">
                         <?php //Use mb_substr to get the first character.
-                            $firstChar = mb_substr(SITE_NAME,0,1, "UTF-8");
+                            $firstChar = mb_substr((isset($company)  ? $company['name']:SITE_NAME),0,1, "UTF-8");
                             echo $firstChar ;
                          ?>
                     </div>

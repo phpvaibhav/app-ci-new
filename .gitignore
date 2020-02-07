@@ -17,7 +17,8 @@ application/vendor/*
 
 # Ignore everything in uploads directory      
 uploads/*
-
+# Ingnore  phpMyAdmin
+phpMyAdmin
 # Ignore placeholder images in uploads directory
 !uploads/placeholders/ws_general_placeholder.png
 

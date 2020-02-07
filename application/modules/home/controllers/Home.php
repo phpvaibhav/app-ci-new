@@ -30,7 +30,7 @@ class Home extends Common_Front_Controller {
         $this->load->login_render('forgot', $data);
     }//End Function
 
-    public function logout() {
+    public function logout_home() {
         //$this->logout(FALSE);
         unset($_SESSION[USER_SESS_KEY]); 
         $this->session->set_flashdata('success', 'Sign out successfully done! ');

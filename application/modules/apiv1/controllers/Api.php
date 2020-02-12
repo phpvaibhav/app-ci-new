@@ -113,10 +113,36 @@ class Api extends Common_Service_Controller{
                // pr($result);
                   
                 switch ($result['returnType']) {
-                 
+                    $institute_id = 0; 
                     case "SL":
-                      $institute = $this->common_model->getsingle('institute',array('userId'=>$result['userInfo']->id));
-                    $result['userInfo']->instituteId = $institute['instituteId'];
+                      switch ($result['userInfo']->roleId) {
+                          case 1://Admin
+                            $institute = $this->common_model->getsingle('institute',array('userId'=>$result['userInfo']->id));
+                            $institute_id = $institute['instituteId'];
+                              break;
+                          case 2://Teacher
+                            $institute = $this->common_model->getsingle('institute_teacher',array('userId'=>$result['userInfo']->id));
+                            $institute_id = $institute['instituteId'];
+                              break;
+                          case 3://staff
+                            $institute = $this->common_model->getsingle('institute_staff',array('userId'=>$result['userInfo']->id));
+                            $institute_id = $institute['instituteId'];
+                              break;
+                          case 4://institute_student
+                            $institute = $this->common_model->getsingle('institute_student',array('userId'=>$result['userInfo']->id));
+                            $institute_id = $institute['instituteId'];
+                              break;
+                          case 5://institute_parents
+                            $institute = $this->common_model->getsingle('institute_parents',array('userId'=>$result['userInfo']->id));
+                            $institute_id = $institute['instituteId'];
+                              break;
+                          
+                          default:
+                              # code...
+                              break;
+                      }
+                      
+                    $result['userInfo']->instituteId = $institute_id;
                     $this->StoreSession($result['userInfo']);
                     $response = array('status' => SUCCESS, 'message' => ResponseMessages::getStatusCodeMessage(106), 'users' => $result['userInfo']);
                     break;

@@ -88,10 +88,10 @@
                 <li>
                     <a href="<?= base_url().'institute';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
+                <?php if($user['roleId']==1): ?> 
                 <li>
                     <a href="<?= base_url().'teachers';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teachers') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
                 </li>
-                
                 <li>
                     <a href="<?= base_url().'staff';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'staff') ? 'active' : '' ?>"><i class="fa fa-group"></i> <span class="nav-label">Staff</span></a>
                 </li>
@@ -101,7 +101,7 @@
                 <li>
                     <a href="<?= base_url().'parents';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><i class="fa fa-home"></i> <span class="nav-label">Parents</span></a>
                 </li>
-
+                <?php endif; ?>
              
 
             </ul>

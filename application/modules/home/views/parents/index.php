@@ -4,9 +4,9 @@
 	        <div class="ibox-title">
 	            <h5><?= $title; ?></h5>
 	            <div class="ibox-tools">
-	                <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+	               <!--  <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 	                    <i class="fa fa-plus"></i> Create
-	                </a>
+	                </a> -->
 	              
 	            </div>
 	        </div>

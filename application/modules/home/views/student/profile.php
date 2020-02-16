@@ -84,7 +84,36 @@
                 </div> -->
             </div>
             <div class="ibox-content">
-
+                <div class="row">
+                      <?php if(isset($teacher) && !empty($teacher)): ?>
+                    <div class="col-lg-6">
+                    
+               <h5>Assigned Teacher</h5>
+                <div class="contact-box">
+                    <a href="javascript:void(0);">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="<?= $teacher['profileImage']; ?>">
+                            <div class="m-t-xs font-bold"><?= $teacher['userRole']; ?></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong><?= $teacher['fullName']; ?></strong></h3>
+                        <p><i class="fa fa-envelope"></i> <?= $teacher['email']; ?></p>
+                        <address>
+                           <!--  <strong>Twitter, Inc.</strong><br>
+                            795 Folsom Ave, Suite 600<br>
+                            San Francisco, CA 94107 --><br>
+                            <abbr title="Phone">P:</abbr> <?= $teacher['contactNumber']; ?>
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            
+            </div>
+            <?php endif; ?>
+                </div>
 
             </div>
         </div>

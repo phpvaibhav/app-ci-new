@@ -53,6 +53,7 @@ class Customer extends Common_Service_Controller{
             $assign_meta = array();
             $meta_table ="";
             $assign_table ="";
+            $user_meta['instituteId'] = $instituteId;
             $assign_meta['instituteId'] = $instituteId;
             $assign_meta['teacherId']   = $teacherId;
             

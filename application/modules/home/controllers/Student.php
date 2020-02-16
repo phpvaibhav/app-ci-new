@@ -11,11 +11,13 @@ class Student extends Common_Front_Controller {
     public function index(){
         $breadcrumb         = array(
         "Dashboard" => base_url(),
-        "Staff" => ""
+        "Students" => ""
         );
         $data['breadcrumb'] = $breadcrumb;
         $data['title']      = 'Student';
         $data['classes']      = $this->common_model->getAll('institute_classes',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+        $data['teachers']      = $this->common_model->GetJoinRecord('users','id','institute_teacher','userId','id,fullName',array('institute_teacher.instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+      //  pr( $data['teachers']);
         $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css');
         $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/user/js/customer.js');
         $this->load->front_render('student/index', $data, '');

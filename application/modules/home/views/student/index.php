@@ -124,6 +124,20 @@
 		            		</div>
 		        		</div>	
             		</div>
+            		<div class="col-md-6">
+		    			<div class="form-group">
+		            		<div class="col-md-12">
+								<label class="control-label">Teacher</label>
+								<select  name="teacherId" class="form-control">
+									<option value="" >Select Teacher</option>
+									<?php foreach ($teachers as $ka =>$va) { ?>
+										<option value="<?= $va->id; ?>" ><?= $va->fullName; ?></option>
+									<?php } ?>
+									
+								</select>
+		            		</div>
+		        		</div>	
+            		</div>
             		
             	</div>
 

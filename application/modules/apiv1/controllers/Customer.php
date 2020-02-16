@@ -33,6 +33,7 @@ class Customer extends Common_Service_Controller{
             $contact                        = $this->post('contact');
             $roleId                         = $this->post('roleId');
             $instituteId                    = $this->post('instituteId');
+            $teacherId                    = $this->post('teacherId');
             $authtoken                      = $this->api_model->generate_token();
             $passToken                      = $this->api_model->generate_token();
             //user info
@@ -49,8 +50,12 @@ class Customer extends Common_Service_Controller{
             //user info
             //userMeta
             $user_meta = array();
+            $assign_meta = array();
             $meta_table ="";
-            $user_meta['instituteId'] = $instituteId;
+            $assign_table ="";
+            $assign_meta['instituteId'] = $instituteId;
+            $assign_meta['teacherId']   = $teacherId;
+            
             switch ($roleId) {
             	case 2://teacher
             	  $meta_table = 'institute_teacher' ;	
@@ -62,9 +67,10 @@ class Customer extends Common_Service_Controller{
         		break;
             	case 4://student
             	  $meta_table = 'institute_student' ;
-            	  
+            	 $assign_table ="student_assign_teacher";
             	  $user_meta['joinStatus'] = 1;	
-                  $user_meta['classId'] = $this->post('classId');; 
+                  $user_meta['classId'] = $this->post('classId');
+
         		break;
             	case 5://paranets
             	  $meta_table = 'institute_parents' ;
@@ -106,6 +112,10 @@ class Customer extends Common_Service_Controller{
                   	  $user_meta['userId'] = $result['returnData']->userId;	
                       $this->common_model->insertData($meta_table,$user_meta);
                   	}
+                    if(!empty($assign_table) && !empty($teacherId)){
+                      $assign_meta['studentId'] = $result['returnData']->userId; 
+                      $this->common_model->insertData($assign_table,$assign_meta);
+                    }
                     //check meta
                     $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(110), 'messageCode'=>'normal_reg','users'=>$result['returnData']);
                     break;

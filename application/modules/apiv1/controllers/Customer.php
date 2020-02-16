@@ -64,6 +64,7 @@ class Customer extends Common_Service_Controller{
             	  $meta_table = 'institute_student' ;
             	  
             	  $user_meta['joinStatus'] = 1;	
+                  $user_meta['classId'] = $this->post('classId');; 
         		break;
             	case 5://paranets
             	  $meta_table = 'institute_parents' ;
@@ -102,7 +103,7 @@ class Customer extends Common_Service_Controller{
                     case "NR": // Normal registration
                     //check meta
                   	if(!empty($meta_table)){
-                  	  $user_meta['userId'] = $result['returnData']->id;	
+                  	  $user_meta['userId'] = $result['returnData']->userId;	
                       $this->common_model->insertData($meta_table,$user_meta);
                   	}
                     //check meta

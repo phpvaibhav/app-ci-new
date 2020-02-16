@@ -3,21 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title><?php echo (isset($company)  ? $company['name']:SITE_NAME).' | Admin' ?></title>
     <?php
         $common_assets =  base_url().'common_assets/';
         $backend_assets =  base_url().'backend_assets/';
     ?>
      <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $common_assets; ?>img/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $common_assets; ?>img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $common_assets; ?>img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="<?php echo $common_assets; ?>img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $common_assets; ?>img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $common_assets; ?>img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $common_assets; ?>img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo $common_assets; ?>img/favicon/site.webmanifest">
     <!-- Favicon -->
     <link href="<?php echo $common_assets; ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo $common_assets; ?>font-awesome/css/font-awesome.css" rel="stylesheet">
-
     <link href="<?php echo $common_assets; ?>css/animate.css" rel="stylesheet">
     <!-- Toastr style -->
     <link href="<?php echo $common_assets; ?>css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -46,6 +44,8 @@
         <div class="sidebar-collapse">
             <div class="logo-element-logo">
                 <?php 
+                //Use mb_substr to get the first character.
+                            $firstChar = mb_substr((isset($company)  ? $company['name']:SITE_NAME),0,1, "UTF-8");
                     $logo = base_url().'common_assets/img/meteor_logo.png';
                     if(isset($company) && !empty($company['logo'])){
                         $logo =  base_url().'uploads/logo/large/'.$company['logo'];
@@ -53,7 +53,7 @@
 
                 ?>
             
-               <img src="<?php echo $logo; ?>" class="m-t" width="200" height="50" alt="">
+               <a href="<?= base_url().'institute';?>"><img src="<?php echo $logo; ?>" class="m-t" width="200" height="50" alt="<?=  $firstChar; ?>"></a>
             </div>
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
@@ -79,8 +79,7 @@
                         </ul>
                     </div>
                     <div class="logo-element">
-                        <?php //Use mb_substr to get the first character.
-                            $firstChar = mb_substr((isset($company)  ? $company['name']:SITE_NAME),0,1, "UTF-8");
+                        <?php 
                             echo $firstChar ;
                          ?>
                     </div>
@@ -100,6 +99,9 @@
                 </li>
                 <li>
                     <a href="<?= base_url().'parents';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><i class="fa fa-home"></i> <span class="nav-label">Parents</span></a>
+                </li>  
+                <li>
+                    <a href="<?= base_url().'institute-class';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-class') ? 'active' : '' ?>"><i class="fa fa-folder-o"></i> <span class="nav-label">Institute class</span></a>
                 </li>
                 <?php endif; ?>
              

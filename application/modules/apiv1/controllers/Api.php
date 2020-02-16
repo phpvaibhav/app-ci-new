@@ -4,7 +4,8 @@ class Api extends Common_Service_Controller{
     
     public function __construct(){
         parent::__construct();
-  
+    error_reporting(E_ALL);
+        ini_set('display_errors', 1);
         $this->load->model('api_model'); //load image model
     }
 
@@ -111,9 +112,9 @@ class Api extends Common_Service_Controller{
             $result                 = $this->api_model->login($data,$authtoken);
             if(is_array($result)){
                // pr($result);
-                  
+                 $institute_id = 0;   
                 switch ($result['returnType']) {
-                    $institute_id = 0; 
+                   
                     case "SL":
                       switch ($result['userInfo']->roleId) {
                           case 1://Admin

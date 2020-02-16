@@ -12,7 +12,7 @@
 	        </div>
         	<div class="ibox-content">
             	<div class="table-responsive">
-        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/student/list" >
+        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/student/list" data-id="<?= $_SESSION[USER_SESS_KEY]['instituteId'];?>" >
         				<thead>
 					        <tr>
 					            <th>S.No.</th>
@@ -107,6 +107,20 @@
 		            		<div class="col-md-12">
 							<label class="control-label">Confirm Password</label>
 						<input type="password" name="c_password" placeholder="Confirm Password" id="c_password" value="" class="form-control" >
+		            		</div>
+		        		</div>	
+            		</div>
+        			<div class="col-md-6">
+		    			<div class="form-group">
+		            		<div class="col-md-12">
+								<label class="control-label">Class</label>
+								<select  name="classId" class="form-control">
+									<option value="" >Select Class</option>
+									<?php foreach ($classes as $k => $v) { ?>
+										<option value="<?= $v->classId; ?>" ><?= $v->className; ?></option>
+									<?php } ?>
+									
+								</select>
 		            		</div>
 		        		</div>	
             		</div>

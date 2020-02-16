@@ -61,6 +61,8 @@ $route['institute-all']					= 'admin/institute/index';
 
 //User
 $route['institute']					= 'home/institute';
+$route['institute-class']					= 'home/instituteclass';
+
 $route['user_profile/(:any)'] 			= 'home/users/userDetail/$1';
 $route['user_change_password/(:any)'] 	= 'home/users/changePassword/$1';
 $route['instituteInfo'] 			= 'home/users/instituteInfo';
@@ -69,3 +71,4 @@ $route['staff'] 					= 'home/staff/index';
 $route['students'] 					= 'home/student/index';
 $route['parents'] 					= 'home/parents/index';
 $route['all-detail/(:any)'] 	    = 'home/users/detail/$1';
+$route['student-detail/(:any)'] 	    = 'home/student/detail/$1';

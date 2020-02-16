@@ -9,7 +9,9 @@ class Staff extends Common_Service_Controller{
     public function list_post(){
         $this->load->helper('text');
         $this->load->model('staff_model');
-        $this->staff_model->set_data();
+                $id = $this->post('id');
+        $where = array('im.instituteId'=>$id);
+        $this->staff_model->set_data($where);
         $list   = $this->staff_model->get_list();
         
         $data   = array();

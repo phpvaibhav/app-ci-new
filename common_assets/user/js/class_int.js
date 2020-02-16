@@ -1,5 +1,5 @@
 /*Add */
-$("#form-customer").validate({// Rules for form validation
+$("#form-class-int").validate({// Rules for form validation
   errorClass    : errorClass,
   errorElement  : errorElement,
   highlight: function(element) {
@@ -11,55 +11,15 @@ $("#form-customer").validate({// Rules for form validation
     $(element).addClass('valid');
   },
   rules : {
-    firstName : {
+    className : {
       required : true
-    },
-    lastName : {
-      required : true
-    }, 
-    email : {
-      required  : true,
-      email     : true
-    }, 
-     contact : {
-      required  : true,
-    
-    },
-    password : {
-      required  : true,
-      minlength : 3,
-      maxlength : 20
-    },
-    c_password : {
-      required  : true,
-      minlength : 3,
-      maxlength : 20,
-      equalTo   : '#password'
-    },
+    }
   },
   // Messages for form validation
   messages : {
-        firstName : {
-            required : 'Please enter your frist name'
-        },
-        lastName : {
-            required : 'Please enter your last name',
-        },
-        email : {
-            required  : 'Please enter your email address',
-            email     : 'Please enter a valid email address'
-        },
-        contact : {
-            required  : 'Please enter your contact number'
-        },
-        password : {
-          required  : 'Please enter your password'
-        },
-        c_password : {
-          required  : 'Please re-enter your password',
-          equalTo   : 'Please enter the same password as above'
+        className : {
+            required : 'Please enter your class name'
         }
-
     },
     // Ajax form submition
     submitHandler : function(form) {
@@ -118,7 +78,7 @@ initComplete: function () {
   "url": base_url+$(data_list).data('list-url'),
   "type": "POST",
   "dataType": "json",
-    "data": { 'id':$(data_list).data('id')},
+  "data": { 'id':$(data_list).data('id')},
   "headers": { 'authToken':authToken},
   "dataSrc": function (jsonData) {
     return jsonData.data;

@@ -1,27 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Student_model extends CI_Model {
+class Classint_model extends CI_Model {
 
     //var $table , $column_order, $column_search , $order =  '';
-    var $table = 'users';
-    var $column_order = array('u.id','u.firstName','u.lastName','u.email','u.contactNumber','u.status'); //set column field database for datatable orderable
-    var $column_sel = array('u.id','u.firstName','u.lastName','u.email','u.contactNumber','u.status','ac.classId','ac.className','im.joinStatus','(case when (u.status = 0) 
-        THEN "Inactive" when (u.status = 1) 
+    var $table = 'institute_classes';
+    var $column_order = array('classId','className','status'); //set column field database for datatable orderable
+    var $column_sel = array('classId','classId as id','className','status','(case when (status = 0) 
+        THEN "Inactive" when (status = 1) 
         THEN "Active"  ELSE
         "Unknown" 
-        END) as statusShow','(case when (im.joinStatus = 0) 
-        THEN "Pending" when (im.joinStatus = 1) 
-        THEN "Approved"  ELSE
-        "Unknown" 
-        END) as joinShow','(case when (u.profileImage = "") 
-            THEN "common_assets/img/avatars/1.png" ELSE
-            concat("uploads/user/",u.profileImage) 
-            END) as profileImage'); //set column field database for datatable orderable
-    var $column_search = array('u.firstName','u.lastName','u.email','u.contactNumber',); //set column field database for datatable searchable 
-    var $order = array('u.id'=> 'DESC');  // default order
+        END) as statusShow'); //set column field database for datatable orderable
+    var $column_search = array('className'); //set column field database for datatable searchable 
+    var $order = array('classId'=> 'DESC');  // default order
     var $where = array();
-    var $group_by = 'u.id'; 
+    var $group_by = 'classId'; 
 
     public function __construct(){
         parent::__construct();
@@ -35,10 +28,7 @@ class Student_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from('users as u');
-        $this->db->join('institute_student as im','u.id=im.userId');
-        $this->db->join('institute_classes as ac','ac.classId =im.classId','left');
-        //$this->db->join('users as d','d.id=j.driverId','left');
+        $this->db->from('institute_classes');
         $i = 0;
         foreach ($this->column_search as $emp) // loop column 
         {
@@ -115,9 +105,7 @@ class Student_model extends CI_Model {
 
     public function count_all()
     {
-        $this->db->from('users as u');
-        $this->db->join('institute_student as im','u.id=im.userId');
-         $this->db->join('institute_classes as ac','ac.classId =im.classId','left');
+        $this->db->from('institute_classes');
          if(!empty($this->where))
             $this->db->where($this->where); 
         return $this->db->count_all_results();

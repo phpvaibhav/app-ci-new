@@ -12,7 +12,7 @@
 	        </div>
         	<div class="ibox-content">
             	<div class="table-responsive">
-        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/teacher/list" >
+        			<table class="table table-striped table-bordered table-hover dataTables-example-list" data-list-url="apiv1/teacher/list" data-id="<?= $_SESSION[USER_SESS_KEY]['instituteId'];?>" >
         				<thead>
 					        <tr>
 					            <th>S.No.</th>

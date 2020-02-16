@@ -9,7 +9,9 @@ class Parents extends Common_Service_Controller{
     public function list_post(){
         $this->load->helper('text');
         $this->load->model('parents_model');
-        $this->parents_model->set_data();
+        $id = $this->post('id');
+        $where = array('im.instituteId'=>$id);
+        $this->parents_model->set_data($where);
         $list   = $this->parents_model->get_list();
         
         $data   = array();

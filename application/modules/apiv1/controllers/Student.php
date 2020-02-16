@@ -9,7 +9,9 @@ class Student extends Common_Service_Controller{
     public function list_post(){
         $this->load->helper('text');
         $this->load->model('student_model');
-        $this->student_model->set_data();
+                        $id = $this->post('id');
+        $where = array('im.instituteId'=>$id);
+        $this->student_model->set_data($where);
         $list   = $this->student_model->get_list();
         
         $data   = array();
@@ -25,7 +27,7 @@ class Student extends Common_Service_Controller{
         $row[]      = display_placeholder_text($serData->lastName); 
         $row[]      = display_placeholder_text($serData->email); 
         $row[]      = display_placeholder_text($serData->contactNumber); 
-        $row[]      = "NA"; 
+        $row[]      = display_placeholder_text($serData->className); 
 /*        switch ($serData->joinStatus) {
          
             case 1:
@@ -62,7 +64,7 @@ class Student extends Common_Service_Controller{
         }else{
             $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change status!" data-id="'.encoding($serData->id).'" data-url="apiv1/customer/customerStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-times" aria-hidden="true"></i></a>';
         }
-        $userLink = base_url().'all-detail/'.encoding($serData->id);
+        $userLink = base_url().'student-detail/'.encoding($serData->id);
         
         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$userLink.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 

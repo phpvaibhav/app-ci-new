@@ -42,10 +42,15 @@ class Home extends Common_Front_Controller {
     public function institute() {
       //echo "fgdg";
      $data['title'] = "institute";
-     $data['teacher_count']  = $this->common_model->get_total_count('institute_teacher',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
-     $data['staff_count']  = $this->common_model->get_total_count('institute_staff',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
-     $data['student_count']  = $this->common_model->get_total_count('institute_student',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
-     $data['parents_count']  = $this->common_model->get_total_count('institute_parents',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));
+     $chart_Data = array();
+     if($_SESSION[USER_SESS_KEY]['roleId']==1){
+        $chart_Data[] = array('label'=>'Teachers','icon'=>'fa fa-vcard','count'=> $this->common_model->get_total_count('institute_teacher',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Staff','icon'=>'fa fa-group','count'=> $this->common_model->get_total_count('institute_staff',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Students','icon'=>'fa fa-child','count'=> $this->common_model->get_total_count('institute_student',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Parents','icon'=>'fa fa-home','count'=> $this->common_model->get_total_count('institute_parents',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Class','icon'=>'fa fa-folder-o','count'=> $this->common_model->get_total_count('institute_classes',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+     }
+     $data['count_list'] = $chart_Data;
       $this->load->front_render('dashboard', $data, '');
     }//End Function
    

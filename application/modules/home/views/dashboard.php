@@ -1,56 +1,21 @@
         <div class="row">
+            <?php if(!empty($count_list)): foreach ($count_list as $k => $count) {
+               ?>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                              <!--    <span class="label label-success pull-right">Monthly</span> -->
-                                <h5>Teachers</h5>
+                                <h5><?= $count['label']; ?></h5>
                             </div>
                             <div class="ibox-content">
-                                <h1 class="no-margins"><?= $teacher_count;?></h1>
-                                <div class="stat-percent font-bold text-success"><i class="fa fa-bolt"></i></div>
-                                <small>Total Teachers</small>
+                                <h1 class="no-margins"><?= $count['count']; ?></h1>
+                                <div class="stat-percent font-bold text-success"><i class="<?= $count['icon']; ?>"></i></div>
+                                <small>Total <?= $count['label']; ?></small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                               <!--  <span class="label label-info pull-right">Annual</span> -->
-                                <h5>Staff</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?= $staff_count;?></h1>
-                                <div class="stat-percent font-bold text-info"> <i class="fa fa-level-up"></i></div>
-                                <small>Total Staff</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                               <!--  <span class="label label-primary pull-right">Today</span> -->
-                                <h5>Students</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?= $student_count;?></h1>
-                                <div class="stat-percent font-bold text-navy"><i class="fa fa-level-up"></i></div>
-                                <small>Total Student</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                               <!--  <span class="label label-danger pull-right">Low value</span> -->
-                                <h5>Parents</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?= $parents_count;?></h1>
-                                <div class="stat-percent font-bold text-danger"><i class="fa fa-level-up"></i></div>
-                                <small>Total Parents</small>
-                            </div>
-                        </div>
-            </div>
+               <?php } endif; ?>
+                   
         </div>
    <!--  <div class="middle-box text-center animated fadeInRightBig">
         <h3 class="font-bold">This is page content</h3>

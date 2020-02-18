@@ -104,10 +104,10 @@ define('NOTIFICATIONS', 'notifications');
 
 //uploads path
 define('USER_AVATAR_PATH', 'uploads/user/'); //user avatar
-define('USER_DEFAULT_AVATAR', 'common_assets/img/avatars/1.png'); //user placeholder image
+define('USER_DEFAULT_AVATAR', 'common_assets/img/avatars/set.png'); //user placeholder image
 //uploads path
 define('ADMIN_AVATAR_PATH', 'uploads/admin/'); //user avatar
-define('ADMIN_DEFAULT_AVATAR', 'common_assets/img/avatars/1.png'); //user placeholder image
+define('ADMIN_DEFAULT_AVATAR', 'common_assets/img/avatars/set.png'); //user placeholder image
 
 //Title, Site name, Copyright etc
 define('SITE_NAME','Tunecademy'); //your project name

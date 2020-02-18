@@ -2,6 +2,7 @@
             <?php if(!empty($count_list)): foreach ($count_list as $k => $count) {
                ?>
                     <div class="col-lg-3">
+                        <a href="<?= base_url().$count['link']; ?>">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                              <!--    <span class="label label-success pull-right">Monthly</span> -->
@@ -13,6 +14,7 @@
                                 <small>Total <?= $count['label']; ?></small>
                             </div>
                         </div>
+                        </a>
                     </div>
                <?php } endif; ?>
                    

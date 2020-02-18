@@ -44,11 +44,11 @@ class Home extends Common_Front_Controller {
      $data['title'] = "institute";
      $chart_Data = array();
      if($_SESSION[USER_SESS_KEY]['roleId']==1){
-        $chart_Data[] = array('label'=>'Teachers','icon'=>'fa fa-vcard','count'=> $this->common_model->get_total_count('institute_teacher',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
-        $chart_Data[] = array('label'=>'Staff','icon'=>'fa fa-group','count'=> $this->common_model->get_total_count('institute_staff',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
-        $chart_Data[] = array('label'=>'Students','icon'=>'fa fa-child','count'=> $this->common_model->get_total_count('institute_student',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
-        $chart_Data[] = array('label'=>'Parents','icon'=>'fa fa-home','count'=> $this->common_model->get_total_count('institute_parents',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
-        $chart_Data[] = array('label'=>'Class','icon'=>'fa fa-folder-o','count'=> $this->common_model->get_total_count('institute_classes',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Teachers','link'=>'teachers','icon'=>'fa fa-vcard','count'=> $this->common_model->get_total_count('institute_teacher',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Staff','link'=>'staff','icon'=>'fa fa-group','count'=> $this->common_model->get_total_count('institute_staff',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Students','link'=>'students','icon'=>'fa fa-child','count'=> $this->common_model->get_total_count('institute_student',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Parents','link'=>'parents','icon'=>'fa fa-home','count'=> $this->common_model->get_total_count('institute_parents',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
+        $chart_Data[] = array('label'=>'Class','link'=>'institute-class','icon'=>'fa fa-folder-o','count'=> $this->common_model->get_total_count('institute_classes',array('instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId'])));
      }
      $data['count_list'] = $chart_Data;
       $this->load->front_render('dashboard', $data, '');

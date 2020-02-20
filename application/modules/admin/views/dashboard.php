@@ -1,5 +1,6 @@
         <div class="row">
                     <div class="col-lg-3">
+                        <a href="<?= base_url().'institute-all'; ?>">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                <!--  <span class="label label-success pull-right">Monthly</span> -->
@@ -11,6 +12,7 @@
                                 <small>Total</small>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">

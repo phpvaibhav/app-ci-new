@@ -80,3 +80,20 @@ function confirmAction(e){
   });
 }
 //confirmAction     
+$(function(){
+  $('.txturl-trim').on('keyup',function(){
+    
+    var url = slugfy($(this).val());
+    $(this).val(url);
+    //$('#sluginput').val(url);
+    //$('#slugUrl').html(url);
+  });
+});
+window.slugfy = function(text){
+  return text.toString().toLowerCase()
+  .replace(/\s+/g,'-')  //replace space with -
+  .replace(/[^\w\-]+/g,'')  //remove non-word char
+  .replace(/\-\-+/g,'-')  //replace multiple - to single -
+  .replace(/^-+/,'')  //trim - from start of text
+  .replace(/-+$/,''); //trim - from end of text
+};

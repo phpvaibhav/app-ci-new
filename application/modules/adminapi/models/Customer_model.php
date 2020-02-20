@@ -4,7 +4,7 @@
 * Handles web service request
 * version: 2.0 ( 14-08-2018 )
 */
-class Api_model extends CI_Model {
+class Customer_model extends CI_Model {
     /**
      * Generate auth token for API users
      * Modified in version 2.0

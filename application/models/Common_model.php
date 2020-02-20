@@ -241,7 +241,7 @@ class Common_model extends CI_Model {
         $userDefault = base_url().USER_DEFAULT_AVATAR;
         $this->db->select('users.id,
                         users.id as userId,
-                        users.fullName,users.firstName,users.lastName,
+                        users.fullName,users.firstName,users.lastName,users.username,
                         users.email,
                         users.authToken,users.contactNumber,
                         users.roleId,users.bio,users.verifyEmail,

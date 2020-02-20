@@ -81,6 +81,9 @@
                 <li>
                     <a href="<?= base_url().'institute-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-all') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Institutes</span></a>
                 </li>
+                <li>
+                    <a href="<?= base_url().'teacher-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher-all') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
+                </li>
             </ul>
 
         </div>

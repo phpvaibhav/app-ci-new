@@ -33,7 +33,7 @@ $("#login-form").validate({
   rules : {
     email   : {
               required  : true,
-              email     : true
+             // email     : true
             },
     password : {
               required  : true,
@@ -44,8 +44,8 @@ $("#login-form").validate({
   // Messages for form validation
   messages : {
     email : {
-              required  : 'Please enter your email address',
-              email     : 'Please enter a valid email address'
+              required  : 'Please enter your email address or username',
+             // email     : 'Please enter a valid email address'
             },
     password : {
               required  : 'Please enter your password'
@@ -135,6 +135,9 @@ $("#form-register-front").validate({// Rules for form validation
     name    : {
       required  : true
     },
+    username    : {
+      required  : true
+    },
     firstName    : {
       required  : true
     },
@@ -166,6 +169,9 @@ $("#form-register-front").validate({// Rules for form validation
   messages : {
     name : {
       required  : 'Please enter your institute name'
+    },  
+    username : {
+      required  : 'Please enter your user name'
     }, 
     firstName : {
       required  : 'Please enter your first name'

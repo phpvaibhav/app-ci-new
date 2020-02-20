@@ -14,8 +14,11 @@ class Api extends Common_Service_Controller{
         $this->form_validation->set_rules('name', 'institute name', 'trim|required|min_length[2]');
         $this->form_validation->set_rules('firstName', 'first name', 'trim|required|min_length[2]');
         $this->form_validation->set_rules('lastName', 'last name', 'trim|required|min_length[2]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',
-            array('is_unique' => 'Email already exist')
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|is_unique[users.email]', 
+            array('is_unique' => 'email already exist')
+        );
+        $this->form_validation->set_rules('username', 'user name', 'trim|required|is_unique[users.username]',
+            array('is_unique' => 'User name already exist')
         );
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|max_length[20]');
         $this->form_validation->set_rules('contact', 'Contact Number', 'trim|required|min_length[10]|max_length[20]');
@@ -26,22 +29,24 @@ class Api extends Common_Service_Controller{
         }
         else{
 
-            $name                          = $this->post('name');
-            $email                         = $this->post('email');
-            $firstName                     = $this->post('firstName');
-            $lastName                      = $this->post('lastName');
-            $fullName                      = $firstName." ".$lastName;
-            $contact                      = $this->post('contact');
-            $authtoken                     = $this->api_model->generate_token();
-            $passToken                     = $this->api_model->generate_token();
+            $name                           = $this->post('name');
+            $email                          = $this->post('email');
+            $username                       = $this->post('username');
+            $firstName                      = $this->post('firstName');
+            $lastName                       = $this->post('lastName');
+            $fullName                       = $firstName." ".$lastName;
+            $contact                        = $this->post('contact');
+            $authtoken                      = $this->api_model->generate_token();
+            $passToken                      = $this->api_model->generate_token();
             //user info
-            $userData['firstName']           =  $firstName;
-            $userData['lastName']           =   $lastName;
-            $userData['fullName']           =   $fullName;
-            $userData['email']              =   $email;
-            $userData['roleId']             =   1;
-            $userData['contactNumber']      =   $this->post('contact');
-            $userData['authToken']          =   $authtoken;
+            $userData['username']           =  $username;
+            $userData['firstName']          =  $firstName;
+            $userData['lastName']           =  $lastName;
+            $userData['fullName']           =  $fullName;
+            $userData['email']              =  $email;
+            $userData['roleId']             =  1;
+            $userData['contactNumber']      =  $this->post('contact');
+            $userData['authToken']          =  $authtoken;
             $userData['password']           =   password_hash($this->post('password'), PASSWORD_DEFAULT);
             $userData['authToken']          =   $authtoken;
             $userData['passToken']          =   $passToken;
@@ -93,7 +98,7 @@ class Api extends Common_Service_Controller{
         }
     } //End Function
     function login_post(){
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+        $this->form_validation->set_rules('email','Email','trim|required');
         $this->form_validation->set_rules('password','Password','trim|required');
         if($this->form_validation->run() == FALSE)
         {

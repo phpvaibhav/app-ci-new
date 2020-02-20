@@ -68,14 +68,35 @@
                 <h5>Profile</h5>
             </div>
             <div class="ibox-content">
-				<form class="form-horizontal" method="post" action="apiv1/users/updateUser" id="smart-form-updateuser" enctype="multipart/form-data" novalidate autocomplete="off">
+				<form class="form-horizontal" method="post" action="apiv1/users/updateUser" id="customer-form-updateuser" enctype="multipart/form-data" novalidate autocomplete="off">
 					<input type="hidden" name="userauth" value="<?php echo $this->uri->segment(2); ?>">
 				          <!--   <p>Sign in today for more expirience.</p> -->
-				            <div class="form-group">
+				    <!--         <div class="form-group">
 
 				                <div class="col-lg-12">
 				                	<label class="control-label">Full name</label>
 				                	<input type="text" class="form-control" name="fullName" placeholder="Full name" value="<?php echo $userData['fullName']; ?>" maxlength="30" size="30">
+				                </div>
+				            </div>   -->
+				            <div class="form-group">
+
+				                <div class="col-lg-12">
+				                	<label class="control-label">First Name</label>
+				                	<input type="text" class="form-control" name="firstName" placeholder="First name" value="<?php echo $userData['firstName']; ?>" maxlength="30" size="30">
+				                </div>
+				            </div>  
+				            <div class="form-group">
+
+				                <div class="col-lg-12">
+				                	<label class="control-label">Last Name</label>
+				                	<input type="text" class="form-control" name="lastName" placeholder="Last name" value="<?php echo $userData['lastName']; ?>" maxlength="30" size="30">
+				                </div>
+				            </div>
+				            <div class="form-group">
+
+				                <div class="col-lg-12">
+				                	<label class="control-label">User name</label>
+				                	<input type="text" class="form-control txturl-trim" name="username" placeholder="User name" value="<?php echo $userData['username']; ?>" maxlength="30" size="30">
 				                </div>
 				            </div>
 							<div class="form-group">
@@ -91,11 +112,18 @@
 							    	<label class="control-label">Contect</label>
 							    	<input class="form-control" type="text" name="contact" maxlength="20" size="20" class="number-only" placeholder="Contact"  value="<?php echo $userData['contactNumber']; ?>">
 							    </div>
-					<!-- 	    	<div class="input input-file">
-									<span class="button"><input type="file" name="profileImage" id="file" onchange="this.parentNode.nextSibling.value = this.value" accept="image/*">Browse</span><input type="text" readonly="">
-								</div> -->
 
 							</div>
+							<div class="form-group">
+
+							    <div class="col-lg-12">
+							    	<label class="control-label">Bio</label>
+							    	<textarea class="form-control" name="bio"><?php echo $userData['bio']; ?></textarea>
+							    	
+							    </div>
+
+							</div>
+							
 								<!-- image -->
 									<div class="fileinput fileinput-new input-group" data-provides="fileinput">
 										<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>

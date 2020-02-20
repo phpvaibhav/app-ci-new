@@ -8,9 +8,13 @@
                 <form class="form-horizontal" method="post" action="registration" id="form-register-front" enctype="multipart/form-data" novalidate autocomplete="off">
                     <!-- form set -->
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                                 <label class="control-label">Institute Name</label>
                                 <input type="text" name="name" placeholder="Institute Name" id="name" value="" class="form-control" >
+                        </div>
+                         <div class="col-md-6">
+                                <label class="control-label">User name</label>
+                                <input type="text" name="username" placeholder="User name"  value="" class="form-control" >
                         </div>
                        
                     </div>

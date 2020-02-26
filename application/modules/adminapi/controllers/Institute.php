@@ -42,9 +42,9 @@ class Institute extends Common_Admin_Controller{
             $link      ='javascript:void(0)';
             $action .= "";
        
-       $action .= "NA";
-       // $userLink = "javascript:void(0);";
-       // $action .= '<a class="btn btn-success btn-bitbucket btn-outline"><i class="fa fa-eye" aria-hidden="true"></i></a>';   
+        $link = base_url().'institute-detail/'.encoding($serData->instituteId);
+        
+         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$link.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 
         $row[]  = $action;
         $data[] = $row;

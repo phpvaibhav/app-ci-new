@@ -9,7 +9,7 @@ class MY_Loader extends MX_Loader {
         $user_sess_data                 = $_SESSION[USER_SESS_KEY]; 
         $session_u_id                   = $user_sess_data['id']; //user ID
 
-        $instituteId = $_SESSION[USER_SESS_KEY]['instituteId'];
+        $instituteId                    = $_SESSION[USER_SESS_KEY]['instituteId'];
         $where                          = array('users.id'=>$session_u_id,'users.status'=>1);//status:0 means active 
         $uData                          = $this->common_model->userInfo($where);
         $company                          = $this->common_model->getsingle('institute',array('instituteId'=>$instituteId));

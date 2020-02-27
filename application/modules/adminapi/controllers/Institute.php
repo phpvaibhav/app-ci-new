@@ -44,7 +44,7 @@ class Institute extends Common_Admin_Controller{
        
         $link = base_url().'institute-detail/'.encoding($serData->instituteId);
         
-         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$link.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
+         $action .= '&nbsp;&nbsp;<a href="'.$link.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 
         $row[]  = $action;
         $data[] = $row;

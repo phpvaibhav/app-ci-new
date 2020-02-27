@@ -34,14 +34,14 @@
             <tbody>
             <tr>
                 <td>
-                    <strong>142</strong> Teachers
+                    <strong><?= $teacher_count; ?></strong> Teachers
                 </td>
                  <td>
-                    <strong>142</strong> Staff
+                    <strong><?= $staff_count; ?></strong> Staff
                 </td>
              
                <td>
-                    <strong>142</strong> Students
+                    <strong><?= $student_count; ?></strong> Students
                 </td>
 
             </tr> 
@@ -63,6 +63,7 @@
     <div class="col-lg-3">
         <div class="ibox">
             <div class="ibox-content">
+                <input type="hidden" name="instituteId" value="<?= $info->instituteId; ?>" id="instituteId">
                 <h3>Basic Information</h3>
                 <ul class="list-unstyled file-list">
                     <li><a href="javascript:void(0);"><i class="fa fa-envelope"></i> <?= $info->email; ?></a></li>
@@ -86,49 +87,38 @@
                             <div id="assign-teacher" class="tab-pane active">
                                 <div class="panel-body">
                                    <!-- Contact -->
-                                   <div class="row" >
-                                        <div class="col-lg-4">
-                                            <div class="contact-box center-version">
+                                   <div class="row teacherData" >
 
-                                                <a href="profile.html">
-
-                                                    <img alt="image" class="img-circle" src="<?= $backend_assets;?>img/a2.jpg">
-
-
-                                                    <h3 class="m-b-xs"><strong>John Smith</strong></h3>
-
-                                                    <div class="font-bold">Graphics designer</div>
-                                                    <address class="m-t-md">
-                                                        <strong>Twitter, Inc.</strong><br>
-                                                        795 Folsom Ave, Suite 600<br>
-                                                        San Francisco, CA 94107<br>
-                                                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                                                    </address>
-
-                                                </a>
-                                                <div class="contact-box-footer">
-                                                    <div class="m-t-xs btn-group">
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                    </div>
+                                   <button class="btn btn-block btn-outline btn-success text-center load-more-teacher">Load more</button>
+                                    <input type="hidden" id="row_teacher" value="0">
+                                    <input type="hidden" id="all_teacher" value="<?php echo $teacher_count; ?>">
                                    <!-- Contact -->
                                </div>
                             </div>
                             <div id="assign-staff" class="tab-pane">
-                                <div class="panel-body">
-                                    <strong>Donec quam felis</strong>
-                                </div>
+                               <div class="panel-body">
+                                   <!-- Contact -->
+                                   <div class="row staffData" >
+
+                                   </div>
+                                   <button class="btn btn-block btn-outline btn-success text-center load-more-staff">Load more</button>
+                                    <input type="hidden" id="row_staff" value="0">
+                                    <input type="hidden" id="all_staff" value="<?php echo $staff_count; ?>">
+                                   <!-- Contact -->
+                               </div>
                             </div>
                             <div id="assign-student" class="tab-pane">
-                                <div class="panel-body">
-                                    <strong>Donec quam felis</strong>
-                                </div>
+                                 <div class="panel-body">
+                                   <!-- Contact -->
+                                   <div class="row studentData" >
+
+                                   </div>
+                                   <button class="btn btn-block btn-outline btn-success text-center load-more-student">Load more</button>
+                                    <input type="hidden" id="row_student" value="0">
+                                    <input type="hidden" id="all_student" value="<?php echo $student_count; ?>">
+                                   <!-- Contact -->
+                               </div>
                             </div>
                         </div>
                     </div>

@@ -60,6 +60,7 @@ class Institute extends Common_Admin_Controller{
         //output to json format
        
         $this->response($output);
-    }//end function 
+    }//end function
+
 }//End Class 
 

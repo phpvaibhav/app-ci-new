@@ -30,10 +30,10 @@ $colors = array('bg-muted', 'bg-primary','bg-success','bg-info','bg-warning','bg
                                                 </a>
                                                 <div class="contact-box-footer">
                                                     <div class="m-t-xs btn-group">
-                                                        <?= substr($user->bio, 0, 5)."..."; ?>
-                                                     <!--    <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a> -->
+                                                       <!--  <?= substr($user->bio, 0, 5)."..."; ?> -->
+                                                        <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call : <?= $user->contactNumber; ?> </a>
+                                                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email : <?= $user->email; ?></a>
+                                                       <!--  <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a> -->
                                                     </div>
                                                 </div>
 

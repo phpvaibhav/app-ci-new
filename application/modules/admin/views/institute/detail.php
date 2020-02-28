@@ -19,8 +19,8 @@
             </div>
             <div>
                 <div class="ibox-content no-padding border-left-right">
-                    <div class="photos text-center m-t" >
-                        <img alt=" <?= isset($info->name) ? ucfirst($info->name):"NA"; ?>" class="feed-photo" src="<?=  $logo; ?>">
+                    <div class="photos text-center m-t m-b m-l m-r" >
+                        <img alt=" <?= isset($info->name) ? ucfirst($info->name):"NA"; ?>" class="feed-photo" src="<?=  $logo; ?>" width="100%">
                     </div>
                     
                 </div>

@@ -20,7 +20,7 @@ class Institute extends Common_Back_Controller {
     public function detail() { 
 
         $breadcrumb         = array(
-        "Dashboard" => base_url(),
+        "Dashboard" => base_url('dashboard'),
         "Institute" => ""
         );
         $data['breadcrumb'] = $breadcrumb;

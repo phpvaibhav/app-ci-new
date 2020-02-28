@@ -10,57 +10,34 @@
 	echo "</pre>";*/
 
 ?>
-<div class="row m-b-lg m-t-lg">
-    <div class="col-md-6">
-	    <div class="profile-image">
-	        <img src="<?=  $logo; ?>" class="img-rounded  m-b-md" alt="profile">
-	    </div>
-	    <div class="profile-info">
-	        <div class="">
-	            <div>
-	                <h2 class="no-margins">
-	                    <?= isset($info->name) ? ucfirst($info->name):"NA"; ?>
-	                </h2>
-	                <h4> <?= isset($info->createdBy) ? ucfirst($info->createdBy):"NA"; ?></h4>
-	                <small>
-	                   <?= isset($info->description) ? $info->description:"NA"; ?>
-	                </small>
-	            </div>
-	        </div>
-	    </div>
-    </div>
-    <div class="col-md-6">
-        <table class="table small m-b-xs">
-            <tbody>
-            <tr>
-                <td class="bg-muted">
-                    <strong><?= $teacher_count; ?></strong> Teachers
-                </td>
-                 <td class="bg-muted">
-                    <strong><?= $staff_count; ?></strong> Staff
-                </td >
-             
-               <td class="bg-muted">
-                    <strong><?= $student_count; ?></strong> Students
-                </td>
-
-            </tr> 
-           
-           <!--  <tr>
-                <td>
-                    <strong>61</strong> Comments
-                </td>
-                <td>
-                    <strong>54</strong> Articles
-                </td>
-            </tr> -->
-          
-            </tbody>
-        </table>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-3">
+      <!-- Profile -->
+              <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5> <?= isset($info->name) ? ucfirst($info->name):"NA"; ?></h5>
+            </div>
+            <div>
+                <div class="ibox-content no-padding border-left-right">
+                    <div class="photos text-center m-t" >
+                        <img alt=" <?= isset($info->name) ? ucfirst($info->name):"NA"; ?>" class="feed-photo" src="<?=  $logo; ?>">
+                    </div>
+                    
+                </div>
+                <div class="ibox-content profile-content">
+                    <h4><strong><?= isset($info->name) ? ucfirst($info->name):"NA"; ?></strong></h4>
+                    <p><i class="fa fa-user"></i> <?= isset($info->createdBy) ? ucfirst($info->createdBy):"NA"; ?></p>
+                    <h5>
+                        About me
+                    </h5>
+                    <p>
+                        <?= isset($info->description) ? $info->description:"NA"; ?>
+                    </p>
+                 
+                </div>
+        </div>
+    </div>
+      <!-- Profile -->
         <div class="ibox">
             <div class="ibox-content">
                 <input type="hidden" name="instituteId" value="<?= $info->instituteId; ?>" id="instituteId">
@@ -79,9 +56,9 @@
             <div class="col-lg-12">
                 <div class="tabs-container">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#assign-teacher"> <i class="fa fa-vcard"></i> Teachers</a></li>
-                        <li class=""><a data-toggle="tab" href="#assign-staff"><i class="fa fa-group"></i> Staff</a></li>
-                        <li class=""><a data-toggle="tab" href="#assign-student"><i class="fa fa-child"></i> Students</a></li>
+                        <li class="active"><a data-toggle="tab" href="#assign-teacher"> <i class="fa fa-vcard"></i> Teachers (<?= $teacher_count; ?>)</a></li>
+                        <li class=""><a data-toggle="tab" href="#assign-staff"><i class="fa fa-group"></i> Staff (<?= $staff_count; ?>)</a></li>
+                        <li class=""><a data-toggle="tab" href="#assign-student"><i class="fa fa-child"></i> Students (<?= $student_count; ?>)</a></li>
                     </ul>
                     <div class="tab-content">
                             <div id="assign-teacher" class="tab-pane active">

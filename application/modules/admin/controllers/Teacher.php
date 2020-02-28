@@ -10,7 +10,7 @@ class Teacher extends Common_Back_Controller {
     }
     public function index(){
         $breadcrumb         = array(
-        "Dashboard" => base_url(),
+        "Dashboard" => base_url('dashboard'),
         "Teachers" => ""
         );
         $data['breadcrumb'] = $breadcrumb;
@@ -22,7 +22,7 @@ class Teacher extends Common_Back_Controller {
     public function detail() {
         $data['title'] = "Detail";
         $breadcrumb         = array(
-        "Dashboard" => base_url(),
+        "Dashboard" => base_url('dashboard'),
         "Profile" => ""
         );
         $data['breadcrumb'] = $breadcrumb;

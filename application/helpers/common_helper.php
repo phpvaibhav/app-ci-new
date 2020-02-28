@@ -439,3 +439,12 @@ function number_format_short( $n ) {
   return !empty($n_format . $suffix) ? $n_format . $suffix : 0;
 }//End function
 /***********  Any new project specific helper method can be added below  ***********/
+if ( ! function_exists('student_class_name')) {
+  function student_class_name($id)
+  {
+    $CI = & get_instance();
+    $row = $CI->db->from('institute_classes')->select('className')->where(array('classId' =>$id))->get();
+    echo $row->num_rows() ? $row->row()->className :"";
+    die;
+  }
+}//End function

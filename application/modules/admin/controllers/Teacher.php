@@ -19,5 +19,18 @@ class Teacher extends Common_Back_Controller {
         $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/customer.js');
         $this->load->admin_render('teacher/index', $data, '');
     } //End function
+    public function detail() {
+        $data['title'] = "Detail";
+        $breadcrumb         = array(
+        "Dashboard" => base_url(),
+        "Profile" => ""
+        );
+        $data['breadcrumb'] = $breadcrumb;
+        $id           = decoding($this->uri->segment(2));
+
+        $data['teacher'] = $this->common_model->userInfo(array('users.id'=>$id));
+        //pr($data);
+        $this->load->admin_render('teacher/detail', $data, '');
+    }//End Function 
  
 }//End Class

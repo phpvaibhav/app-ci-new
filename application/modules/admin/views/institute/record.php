@@ -1,9 +1,12 @@
 <?php $common_assets= base_url().'common_assets/';?>
- <?php if(!empty($result)): foreach($result as $k => $user) { ?>
+ <?php 
+$colors = array('bg-muted', 'bg-primary','bg-success','bg-info','bg-warning','bg-danger');
+
+ if(!empty($result)): foreach($result as $k => $user) {  $rand_color = $colors[array_rand($colors)]; ?>
     
 
-                                        <div class="col-lg-4">
-                                            <div class="contact-box center-version">
+                                        <div class="col-lg-4 ">
+                                            <div class="contact-box center-version ">
 
                                                 <a href="javascript:void(0);">
 
@@ -15,7 +18,11 @@
                                                     <div class="font-bold"><?= $user->email; ?></div>
                                                     <address class="m-t-md">
                                                         <strong>Approval :</strong>
-                                                        <?= $user->joinStatus; ?><br>
+                                                        <?= $user->joinShow; ?><br> 
+                                                        <?php if(isset($user->classId)): ?>
+                                                        <strong>Class  :</strong>
+                                                        <?= student_class_name($user->classId); ?><br>
+                                                    <?php endif; ?>
                                                        <br>
                                                         <abbr title="Phone">P:</abbr> <?= $user->contactNumber; ?>
                                                     </address>

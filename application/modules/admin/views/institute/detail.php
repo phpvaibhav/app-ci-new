@@ -33,14 +33,14 @@
         <table class="table small m-b-xs">
             <tbody>
             <tr>
-                <td>
+                <td class="bg-muted">
                     <strong><?= $teacher_count; ?></strong> Teachers
                 </td>
-                 <td>
+                 <td class="bg-muted">
                     <strong><?= $staff_count; ?></strong> Staff
-                </td>
+                </td >
              
-               <td>
+               <td class="bg-muted">
                     <strong><?= $student_count; ?></strong> Students
                 </td>
 

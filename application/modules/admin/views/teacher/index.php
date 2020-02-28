@@ -21,7 +21,8 @@
 					            <th>Last Name</th>
 					            <th>Email</th>
 					            <th>Contact</th>
-					            <th>Approval</th>
+					            <th>Assigned Institute </th>
+					        <!--     <th>Approval</th> -->
 					            <th>Status</th>
 					            <th>Action</th>
 					        </tr>

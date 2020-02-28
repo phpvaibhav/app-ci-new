@@ -59,6 +59,7 @@ $route['profile/(:any)'] 			= 'admin/users/userDetail/$1';
 $route['change_password/(:any)'] 	= 'admin/users/changePassword/$1';
 $route['institute-all']				= 'admin/institute/index';
 $route['institute-detail/(:any)']			= 'admin/institute/detail/$1';
+$route['teacher-detail/(:any)']			= 'admin/teacher/detail/$1';
 $route['teacher-all']			    = 'admin/teacher/index';
 
 //User

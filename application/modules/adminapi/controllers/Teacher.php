@@ -12,8 +12,8 @@ class Teacher extends Common_Admin_Controller{
           $id = $this->post('id');
        /* if($id):
         $where = array('im.instituteId'=>$id);*/
-
-        $this->teacher_model->set_data();
+        $where = array('u.roleId'=>2);
+        $this->teacher_model->set_data($where);
         $list   = $this->teacher_model->get_list();
         
         $data   = array();
@@ -29,7 +29,8 @@ class Teacher extends Common_Admin_Controller{
         $row[]      = display_placeholder_text($serData->lastName); 
         $row[]      = display_placeholder_text($serData->email); 
         $row[]      = display_placeholder_text($serData->contactNumber); 
-        switch ($serData->joinStatus) {
+        $row[]      = display_placeholder_text($serData->instituteName); 
+  /*      switch ($serData->joinStatus) {
          
             case 1:
                $row[] = '<label class="label label-danger">'.$serData->joinShow.'</label>';
@@ -41,7 +42,7 @@ class Teacher extends Common_Admin_Controller{
             default:
                   $row[] = '<label class="label label-warning">'.$serData->joinShow.'</label>';
                 break;
-        }        
+        }   */     
         switch ($serData->status) {
          
             case 1:
@@ -65,9 +66,9 @@ class Teacher extends Common_Admin_Controller{
         }else{
             $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change status!" data-id="'.encoding($serData->id).'" data-url="adminapi/customer/customerStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-times" aria-hidden="true"></i></a>';
         }
-        $userLink = base_url().'all-detail/'.encoding($serData->id);
+        $userLink = base_url().'teacher-detail/'.encoding($serData->id);
         
-      //  $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$userLink.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
+        $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$userLink.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 
         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to delete this record!" data-id="'.encoding($serData->id).'" data-url="adminapi/customer/customerDelete" data-list="1"  class="on-default edit-row table_action" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>';
         $row[]  = $action;

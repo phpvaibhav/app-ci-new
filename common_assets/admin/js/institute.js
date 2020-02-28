@@ -1,4 +1,4 @@
-var institute_list = $('#institute_list').DataTable({ 
+var institute_list = $('.dataTables-example-list').DataTable({ 
                 "processing": true, //Feature control the processing indicator.
                 "serverSide": true, //Feature control DataTables' servermside processing mode.
                 "order": [], //Initial no order.

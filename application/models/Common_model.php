@@ -242,7 +242,7 @@ class Common_model extends CI_Model {
         $this->db->select('users.id,
                         users.id as userId,
                         users.fullName,users.firstName,users.lastName,users.username,
-                        users.email,
+                        users.email,users.bio,
                         users.authToken,users.contactNumber,
                         users.roleId,users.bio,users.verifyEmail,
                         (case when (profileImage = "") 
@@ -256,6 +256,7 @@ class Common_model extends CI_Model {
 
         if($sql->num_rows()):
             $user = $sql->row_array();
+           
 /*            switch ($user->userType) {
                 case 1:
                     $user->otherInfo =  $this->otherInfo('customerMeta',array('userId'=>$user->id));

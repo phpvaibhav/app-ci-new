@@ -45,7 +45,7 @@
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
              <div class="logo-element-logo">
-               <img src="<?php echo base_url().'common_assets/img/meteor_logo.png'; ?>" class="m-t" width="200" height="50" alt="">
+              <a href="<?= base_url().'dashboard';?>"> <img src="<?php echo base_url().'common_assets/img/meteor_logo.png'; ?>" class="m-t" width="200" height="50" alt=""></a>
             </div>
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
@@ -79,7 +79,7 @@
                     <a href="<?= base_url().'dashboard';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'dashboard') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="<?= base_url().'institute-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-all') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Institutes</span></a>
+                    <a href="<?= base_url().'institute-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-all') ? 'active' : '' ?>"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Institutes</span></a>
                 </li>
                 <li>
                     <a href="<?= base_url().'teacher-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher-all') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>

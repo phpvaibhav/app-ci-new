@@ -17,7 +17,8 @@ class Teacher_model extends CI_Model {
         END) as joinShow','(case when (u.profileImage = "") 
             THEN "common_assets/img/avatars/1.png" ELSE
             concat("uploads/user/",u.profileImage) 
-            END) as profileImage'); //set column field database for datatable orderable
+            END) as profileImage','i.name as instituteName'); //set column field database for datatable orderable
+
     var $column_search = array('u.firstName','u.lastName','u.email','u.contactNumber',); //set column field database for datatable searchable 
     var $order = array('u.id'=> 'DESC');  // default order
     var $where = array();
@@ -37,6 +38,7 @@ class Teacher_model extends CI_Model {
         $this->db->select($sel_fields);
         $this->db->from('users as u');
         $this->db->join('institute_teacher as im','u.id=im.userId','left');
+        $this->db->join('institute as i','im.instituteId=im.instituteId','left');
        // $this->db->join('users as c','c.id=j.customerId','left');
         //$this->db->join('users as d','d.id=j.driverId','left');
         $i = 0;

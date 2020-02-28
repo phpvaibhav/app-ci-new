@@ -28,7 +28,7 @@ class Teacher extends Common_Admin_Controller{
         $row[]      = display_placeholder_text($serData->firstName); 
         $row[]      = display_placeholder_text($serData->lastName); 
         $row[]      = display_placeholder_text($serData->email); 
-        $row[]      = display_placeholder_text($serData->contactNumber); 
+      /*  $row[]      = display_placeholder_text($serData->contactNumber); */
         $row[]      = display_placeholder_text($serData->instituteName); 
   /*      switch ($serData->joinStatus) {
          

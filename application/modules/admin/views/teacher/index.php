@@ -20,7 +20,7 @@
 					            <th>Frist Name</th>
 					            <th>Last Name</th>
 					            <th>Email</th>
-					            <!-- <th>Contact</th> -->
+					          <!--   <th>Contact</th> -->
 					            <th>Assigned Institute </th>
 					        <!--     <th>Approval</th> -->
 					            <th>Status</th>
@@ -36,8 +36,9 @@
 					            <th>Frist Name</th>
 					            <th>Last Name</th>
 					            <th>Email</th>
-					            <th>Contact</th>
-					            <th>Approval</th>
+					              <th>Assigned Institute </th>
+					           <!--  <th>Contact</th> -->
+					       <!--      <th>Approval</th> -->
 					            <th>Status</th>
 					            <th>Action</th>
 					        </tr>

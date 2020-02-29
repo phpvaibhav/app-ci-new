@@ -66,7 +66,7 @@
 		    			<div class="form-group">
 		            		<div class="col-md-12">
 									<label class="control-label">Frist Name</label>
-									<input type="text" name="firstName" placeholder="first Name" id="firstName" value="" class="form-control" >
+									<input type="text" name="firstName" placeholder="First Name" id="firstName" value="" class="form-control" >
 		            		</div>
 		        		</div>	
             		</div>

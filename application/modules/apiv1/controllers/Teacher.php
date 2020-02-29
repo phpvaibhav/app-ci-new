@@ -63,7 +63,7 @@ class Teacher extends Common_Service_Controller{
         }else{
             $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change status!" data-id="'.encoding($serData->id).'" data-url="apiv1/customer/customerStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-times" aria-hidden="true"></i></a>';
         }
-        $userLink = base_url().'all-detail/'.encoding($serData->id);
+        $userLink = base_url().'institute-teacher-detail/'.encoding($serData->id);
         
         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$userLink.'"  class="on-default edit-row table_action" title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 

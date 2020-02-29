@@ -5,7 +5,7 @@ class Teacher_model extends CI_Model {
 
     //var $table , $column_order, $column_search , $order =  '';
     var $table = 'users';
-    var $column_order = array('u.id','u.firstName','u.lastName','u.email','u.contactNumber','u.status'); //set column field database for datatable orderable
+    var $column_order = array('u.id','u.firstName','u.lastName','u.email','u.status'); //set column field database for datatable orderable
     var $column_sel = array('u.id','u.firstName','u.lastName','u.email','u.contactNumber','u.status','im.joinStatus','(case when (u.status = 0) 
         THEN "Inactive" when (u.status = 1) 
         THEN "Active"  ELSE

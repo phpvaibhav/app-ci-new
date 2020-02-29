@@ -46,7 +46,7 @@ class Institute extends Common_Back_Controller {
         $instituteId = $this->input->post('instituteId');
 
         $rowperpage = 3;
-        $column_sel = array('users.id','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_teacher.joinStatus','(case when (users.status = 0) 
+        $column_sel = array('users.id','users.roleId','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_teacher.joinStatus','(case when (users.status = 0) 
         THEN "Inactive" when (users.status = 1) 
         THEN "Active"  ELSE
         "Unknown" 
@@ -69,7 +69,7 @@ class Institute extends Common_Back_Controller {
         $instituteId = $this->input->post('instituteId');
 
         $rowperpage = 3;
-        $column_sel = array('users.id','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_staff.joinStatus','(case when (users.status = 0) 
+        $column_sel = array('users.id','users.roleId','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_staff.joinStatus','(case when (users.status = 0) 
         THEN "Inactive" when (users.status = 1) 
         THEN "Active"  ELSE
         "Unknown" 
@@ -92,7 +92,7 @@ class Institute extends Common_Back_Controller {
         $instituteId = $this->input->post('instituteId');
 
         $rowperpage = 3;
-        $column_sel = array('users.id','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_student.joinStatus','institute_student.classId','(case when (users.status = 0) 
+        $column_sel = array('users.id','users.roleId','users.fullName','users.firstName','users.lastName','users.email','users.contactNumber','users.bio','users.status','institute_student.joinStatus','institute_student.classId','(case when (users.status = 0) 
         THEN "Inactive" when (users.status = 1) 
         THEN "Active"  ELSE
         "Unknown" 

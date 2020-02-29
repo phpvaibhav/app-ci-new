@@ -19,5 +19,17 @@ class Staff extends Common_Front_Controller {
         $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/user/js/customer.js');
         $this->load->front_render('staff/index', $data, '');
     } //End function
+    public function detail() {
+        $data['title'] = "Detail";
+        $breadcrumb         = array(
+        "Dashboard" => base_url(),
+        "Profile" => ""
+        );
+        $data['breadcrumb'] = $breadcrumb;
+        $id           = decoding($this->uri->segment(2));
+
+        $data['info'] = $this->common_model->userInfo(array('users.id'=>$id));
+        $this->load->front_render('teacher/detail', $data, '');
+    }//End Function 
  
 }//End Class

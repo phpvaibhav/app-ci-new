@@ -7,8 +7,21 @@ $colors = array('bg-muted', 'bg-primary','bg-success','bg-info','bg-warning','bg
 
                                         <div class="col-lg-4 ">
                                             <div class="contact-box center-version ">
+                                                <!-- teacher-detail -->
+                                                <?php
+                                                    $actionurl = "javascript:void(0);"; 
+                                                    switch ($user->roleId) {
+                                                        case 2:
+                                                           $actionurl = base_url().'teacher-detail/'.encoding($user->id); 
+                                                            break;
+                                                        
+                                                        default:
+                                                             $actionurl = "javascript:void(0);"; 
+                                                            break;
+                                                    }
 
-                                                <a href="javascript:void(0);">
+                                                ?>
+                                                <a href="<?= $actionurl; ?>">
 
                                                     <img alt="image" class="img-circle" src="<?= base_url().$user->profileImage;?>">
 
@@ -23,18 +36,17 @@ $colors = array('bg-muted', 'bg-primary','bg-success','bg-info','bg-warning','bg
                                                         <strong>Class  :</strong>
                                                         <?= student_class_name($user->classId); ?><br>
                                                     <?php endif; ?>
-                                                       <br>
-                                                        <abbr title="Phone">P:</abbr> <?= $user->contactNumber; ?>
+                                                     
                                                     </address>
 
                                                 </a>
                                                 <div class="contact-box-footer">
-                                                    <div class="m-t-xs btn-group">
-                                                       <!--  <?= substr($user->bio, 0, 5)."..."; ?> -->
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call : <?= $user->contactNumber; ?> </a>
-                                                        <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email : <?= $user->email; ?></a>
-                                                       <!--  <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a> -->
-                                                    </div>
+                                                    <ul class="list-unstyled file-list">
+                                                        <li><a href="javascript:void(0);"><i class="fa fa-envelope"></i> <?= $user->email; ?></a></li>
+                                                         <li><a href="javascript:void(0);"><i class="fa fa-phone"></i> <?= $user->contactNumber; ?></a></li>
+
+                                                    </ul>
+                                                 
                                                 </div>
 
                                             </div>

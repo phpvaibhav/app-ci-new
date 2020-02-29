@@ -31,7 +31,7 @@ class Student extends Common_Front_Controller {
         $data['breadcrumb'] = $breadcrumb;
         $id           = decoding($this->uri->segment(2));
 
-        $data['user'] = $this->common_model->userInfo(array('users.id'=>$id));
+        $data['info'] = $this->common_model->userInfo(array('users.id'=>$id));
         $data['schoolInfo'] = $this->common_model->getsingle('institute_student',array('userId'=>$id));
         $data['classInfo'] = $this->common_model->getsingle('institute_classes',array('classId'=>$data['schoolInfo']['classId']));
         $assign = $this->common_model->getsingle('student_assign_teacher',array('studentId'=>$id,'instituteId'=>$_SESSION[USER_SESS_KEY]['instituteId']));

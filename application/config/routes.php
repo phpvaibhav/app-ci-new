@@ -61,6 +61,8 @@ $route['institute-all']				= 'admin/institute/index';
 $route['institute-detail/(:any)']			= 'admin/institute/detail/$1';
 $route['teacher-detail/(:any)']			= 'admin/teacher/detail/$1';
 $route['teacher-all']			    = 'admin/teacher/index';
+$route['student-all']			    = 'admin/student/index';
+$route['student-detail/(:any)'] 		= 'admin/student/detail/$1';
 
 //User
 $route['institute']					= 'home/institute';

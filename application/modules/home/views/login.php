@@ -19,7 +19,7 @@
             <div class="ibox-content">
                 <form class="m-t" role="form" method="POST" action="login" id="login-form">
                     <div class="form-group">
-                        <input  class="form-control" type="text" id="username" name="email" maxlength="100" size="100" placeholder="Email or user name">
+                        <input  class="form-control" type="text" id="username" name="email" maxlength="100" size="100" placeholder="Username or Email">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password" id="password">

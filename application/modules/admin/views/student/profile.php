@@ -25,15 +25,14 @@
                                 </span>
                                <i class="fa fa-phone"></i> <?= $info['contactNumber'] ? $info['contactNumber']:"NA"; ?>
                             </li>
-                      <!--   <li class="list-group-item fist-item">
-                                <span class="pull-right">
-               
-                                </span>
-                                <i class="fa fa-folder-o"></i> <?= $classInfo['className'] ? $classInfo['className']:"NA"; ?>
-                            </li> -->
+                      <li class="list-group-item fist-item">
+                              <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-plus"></i> Assign Teacher
+                            </a>
+                            </li> 
                         
                         </ul>
-                <h4 class="media-heading">Assigned Teacher</h4>
+                <h4 class="media-heading">Teacher</h4>
                  <?php if(isset($teacher) && !empty($teacher)): ?>
                 <div class="feed-activity-list">
 
@@ -47,8 +46,12 @@
                         </div>
                     </div>
                 </div>
-                <?php else: echo "NA"; ?>
+                <?php else: echo "NA<br><br>"; ?>
+                            
+
                 <?php endif; ?>
+                <br>
+                <br>
                 <br>
                 <h4 class="media-heading">Bio</h4>
                 <p> <?= $info['bio'] ? $info['bio']:"NA"; ?></p>
@@ -83,3 +86,48 @@
 
     </div>
 </div>
+
+<!-- MOdel -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content animated pulse">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Assign Teacher</h4>
+            </div>
+            <!-- form -->
+            <form class="form-horizontal"method="post" action="adminapi/student/teacherAssign" id="form-assign-teacher" enctype="multipart/form-data" novalidate autocomplete="off">
+            <div class="modal-body">
+                <input type="hidden" name="studentId" value="<?= encoding($info['id']); ?>">
+                <!-- form set -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                    <label class="control-label">Teacher</label>
+                                    
+                                    <select class="form-control" name="teacherId">
+                                        <option value=""> Select Teacher </option>
+                                        <?php if(!empty($teacher_list)): foreach ($teacher_list as $t => $tvalue) { ?>
+                                              <option value="<?= $tvalue->id; ?>" <?= (isset($teacher['id']) && $teacher['id']==$tvalue->id )? "seleted='selected'":""; ?>><?= $tvalue->fullName; ?> </option>
+                                        <?php } endif; ?>
+                                      
+                                    </select>
+                            </div>
+                        </div>  
+                    </div>
+
+                </div>
+
+                <!-- form set -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="sumbit" class="btn btn-primary">Save</button>
+            </div>
+            </form>
+            <!-- form -->
+        </div>
+    </div>
+</div>
+<!-- MOdel -->

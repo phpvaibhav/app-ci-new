@@ -71,4 +71,35 @@ class Student extends Common_Admin_Controller{
        
         $this->response($output);
     }//end function 
+    function teacherAssign_post(){
+         $this->form_validation->set_rules('studentId', 'studentId', 'trim|required');
+         $this->form_validation->set_rules('teacherId', 'teacherId', 'trim|required');
+         if($this->form_validation->run() == FALSE){
+            $response = array('status' => FAIL, 'message' => strip_tags(validation_errors()));
+            
+        }else{
+            $studentId             = decoding($this->post('studentId'));
+            $teacherId             = $this->post('teacherId');
+            $where              = array('id'=>$studentId);
+            $isExist          = $this->common_model->is_data_exists('users',$where);
+            if($isExist){
+                $data_val['studentId'] = $studentId;
+                $assign = $this->common_model->is_data_exists('personal_student_assign_teacher',array('studentId'=>$studentId));
+                if($assign){
+                   $res= $this->common_model->updateFields('personal_student_assign_teacher',array('teacherId'=>$teacherId),array('studentId'=>$studentId));
+                }else{
+                  $res= $data_val['teacherId'] = $teacherId;
+                   $this->common_model->insertData('personal_student_assign_teacher',$data_val); 
+                }
+                if($res){
+                      $response = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(123));
+                }else{
+                    $response       = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(118));
+                }
+            }else{
+            $response       = array('status'=>FAIL,'message'=>ResponseMessages::getStatusCodeMessage(118));  
+            }
+        }
+        $this->response($response);
+    }//End Function
 }//End Class 

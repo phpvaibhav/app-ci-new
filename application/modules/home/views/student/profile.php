@@ -33,7 +33,7 @@
                             </li>
                         
                         </ul>
-                <h4 class="media-heading">Assigned Teacher</h4>
+                <h4 class="media-heading">Teacher</h4>
                  <?php if(isset($teacher) && !empty($teacher)): ?>
                 <div class="feed-activity-list">
 
@@ -49,6 +49,8 @@
                 </div>
                 <?php else: echo "NA"; ?>
                 <?php endif; ?>
+                <br>
+                <br>
                 <br>
                 <h4 class="media-heading">Bio</h4>
                 <p> <?= $info['bio'] ? $info['bio']:"NA"; ?></p>

@@ -34,11 +34,11 @@ class Institute extends Common_Back_Controller {
         $staff_count = $this->common_model->get_total_count('institute_staff',array('instituteId'=>$instituteId));
         $student_count = $this->common_model->get_total_count('institute_student',array('instituteId'=>$instituteId));
 
-        $data['info'] = $result;
-        $data['teacher_count']  = $teacher_count;
-        $data['staff_count']    = $staff_count;
-        $data['student_count']  = $student_count;
-        $data['front_scripts']    = array('common_assets/admin/js/load_more.js');
+        $data['info']               = $result;
+        $data['teacher_count']      = $teacher_count;
+        $data['staff_count']        = $staff_count;
+        $data['student_count']      = $student_count;
+        $data['front_scripts']      = array('common_assets/admin/js/load_more.js');
         $this->load->admin_render('institute/detail', $data);
     }//End Function
     function teacherList(){

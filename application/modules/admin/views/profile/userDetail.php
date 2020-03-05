@@ -111,6 +111,9 @@
 								</div> -->
 
 							</div>
+							<div class="form-group">
+								 <div class="col-lg-12">
+								 	<label class="control-label">Profile</label>
 								<!-- image -->
 									<div class="fileinput fileinput-new input-group" data-provides="fileinput">
 										<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
@@ -118,6 +121,8 @@
 										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 									</div>
 								<!-- image -->
+								 </div>
+							</div>
 				            <div class="form-group">
 				                <div class="col-lg-offset-2 col-lg-10">
 				                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"  id="submit">Update</button>

@@ -101,7 +101,7 @@
                 <input type="hidden" name="studentId" value="<?= encoding($info['id']); ?>">
                 <!-- form set -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
                                     <label class="control-label">Teacher</label>

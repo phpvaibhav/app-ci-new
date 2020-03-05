@@ -35,7 +35,8 @@ class Student extends Common_Back_Controller {
         if($assign){
             $data['teacher'] = $this->common_model->userInfo(array('users.id'=>$assign['teacherId']));
         }
-        $data['front_scripts']    = array('common_assets/user/js/customer.js');
+          $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css');
+        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/user/js/customer.js');
         $this->load->admin_render('student/profile', $data, '');
     }//End Function 
  

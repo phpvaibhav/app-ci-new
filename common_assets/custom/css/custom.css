@@ -60,3 +60,7 @@ label.error {
    
     margin-left: 20px !important;;
 }
+.widget-head-color-box {
+    border-radius: 5px 5px 0 0;
+    margin-top: 0px !important;;
+}

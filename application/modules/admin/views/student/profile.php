@@ -9,7 +9,7 @@
                 <h2 class="font-bold no-margins">
                     <?= ucfirst($info['fullName']); ?>
                 </h2>
-                    <small><?= $info['userRole']; ?></small>
+                    <small class="hr-line-dashed"><!-- <?= $info['userRole']; ?> --></small>
                 </div>
                 <img src="<?= $info['profileImage']; ?>" class="img-circle circle-border m-b-md" alt="<?= ucfirst($info['fullName']); ?>">
                 <div>
@@ -25,34 +25,39 @@
                                 </span>
                                <i class="fa fa-phone"></i> <?= $info['contactNumber'] ? $info['contactNumber']:"NA"; ?>
                             </li>
-                      <li class="list-group-item fist-item">
-                              <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-plus"></i> Assign Teacher
-                            </a>
+                            <li class="list-group-item fist-item">
+                                <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    <i class="fa fa-plus"></i> Assign Teacher
+                                </a>
                             </li> 
                         
                         </ul>
                 <h4 class="media-heading">Teacher</h4>
                  <?php if(isset($teacher) && !empty($teacher)): ?>
-                <div class="feed-activity-list">
+                 <div class="widget lazur-bg">
 
-                    <div class="feed-element">
-                        <a href="#" class="pull-left">
-                            <img alt="image" class="img-circle" src="<?= $teacher['profileImage']; ?>" width="60" height="60" >
-                        </a>
-                        <div class="media-body ">
-                            <strong><?= $teacher['fullName']; ?></strong>
-                            <p class="text-muted"><i class="fa fa-envelope"></i> <?= $teacher['email']; ?></p>
-                        </div>
+                                <h4>
+                                  <img alt="image" class="img-circle" src="<?= $teacher['profileImage']; ?>" width="40" height="40" >  <?= $teacher['fullName']; ?>
+                                </h4>
+                        <ul class="list-unstyled m-t-md">
+                            <li>
+                                <span class="fa fa-envelope m-r-xs"></span>
+                                <label>:</label>
+                               <?= $teacher['email']; ?>
+                            </li>
+                           
+                            <li>
+                                <span class="fa fa-phone m-r-xs"></span>
+                                <label>:</label>
+                                 <?= $teacher['contactNumber']; ?>
+                            </li>
+                        </ul>
+
                     </div>
-                </div>
-                <?php else: echo "NA<br><br>"; ?>
-                            
-
+                <?php else: ?>
+                    <p><span class="label label-danger">NA</span></p>
                 <?php endif; ?>
-                <br>
-                <br>
-                <br>
+                <p class="hr-line-dashed"></p>
                 <h4 class="media-heading">Bio</h4>
                 <p> <?= $info['bio'] ? $info['bio']:"NA"; ?></p>
               

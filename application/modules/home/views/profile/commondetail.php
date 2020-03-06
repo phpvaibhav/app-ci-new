@@ -17,7 +17,7 @@
                 </div>
                 <div class="ibox-content profile-content">
                     <h4><strong><?= $user['fullName']; ?></strong></h4>
-                    <p><i class="fa fa-at"></i> <?= $user['userRole']; ?></p>
+                    <p class="hr-line-dashed"><!-- <i class="fa fa-at"></i> <?= $user['userRole']; ?> --></p>
                     <h5>
                         About me
                     </h5>

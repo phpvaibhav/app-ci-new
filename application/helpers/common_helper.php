@@ -445,6 +445,6 @@ if ( ! function_exists('student_class_name')) {
     $CI = & get_instance();
     $row = $CI->db->from('institute_classes')->select('className')->where(array('classId' =>$id))->get();
     echo $row->num_rows() ? $row->row()->className :"";
-    die;
+    //die;
   }
 }//End function

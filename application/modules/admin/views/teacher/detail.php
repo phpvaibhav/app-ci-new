@@ -9,7 +9,7 @@
                 <h2 class="font-bold no-margins">
                     <?= ucfirst($info['fullName']); ?>
                 </h2>
-                    <small><?= $info['userRole']; ?></small>
+                    <small class="hr-line-dashed"><!-- <?= $info['userRole']; ?> --></small>
                 </div>
                 <img src="<?= $info['profileImage']; ?>" class="img-circle circle-border m-b-md" alt="<?= ucfirst($info['fullName']); ?>">
                 <div>

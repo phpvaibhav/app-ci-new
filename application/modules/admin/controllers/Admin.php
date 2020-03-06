@@ -45,7 +45,9 @@ class Admin extends Common_Back_Controller {
       
         $chart_Data[] = array('label'=>'Institute','link'=>'institute-all','icon'=>'fa fa-graduation-cap','count'=> $this->common_model->get_total_count('institute'));
         $chart_Data[] = array('label'=>'Teachers','link'=>'teacher-all','icon'=>'fa fa-vcard','count'=> $this->common_model->get_total_count('users',array('roleId'=>2)));
-          $chart_Data[] = array('label'=>'Students','link'=>'student-all','icon'=>'fa fa-child','count'=> $this->common_model->get_total_count('users',"(`roleId`=4 AND `roleId`!=1 AND `roleId`!=2 AND `roleId`!=3 AND `roleId`!=5) AND `id` NOT IN (SELECT `userId` FROM `institute_student`)"));
+          $chart_Data[] = array('label'=>'Students','link'=>'student-all','icon'=>'fa fa-child','count'=> $this->common_model->get_total_count('users',"(`roleId`=4 AND `roleId`!=1 AND `roleId`!=2 AND `roleId`!=3 AND `roleId`!=5) AND `id` NOT IN (SELECT `userId` FROM `institute_student`)")); 
+          $chart_Data[] = array('label'=>'Contant Pages','link'=>'pages','icon'=>'fa fa-bandcamp','count'=> $this->common_model->get_total_count('pages'));
+          $chart_Data[] = array('label'=>'Blogs','link'=>'all-blogs','icon'=>'fa fa-wechat','count'=> $this->common_model->get_total_count('blogs'));
       
      $data['count_list'] = $chart_Data;
         $this->load->admin_render('dashboard', $data, '');

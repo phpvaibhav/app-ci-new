@@ -58,11 +58,13 @@ $route['dashboard']					= 'admin/dashboard';
 $route['profile/(:any)'] 			= 'admin/users/userDetail/$1';
 $route['change_password/(:any)'] 	= 'admin/users/changePassword/$1';
 $route['institute-all']				= 'admin/institute/index';
-$route['institute-detail/(:any)']			= 'admin/institute/detail/$1';
-$route['teacher-detail/(:any)']			= 'admin/teacher/detail/$1';
+$route['institute-detail/(:any)']	= 'admin/institute/detail/$1';
+$route['teacher-detail/(:any)']		= 'admin/teacher/detail/$1';
 $route['teacher-all']			    = 'admin/teacher/index';
 $route['student-all']			    = 'admin/student/index';
-$route['student-detail/(:any)'] 		= 'admin/student/detail/$1';
+$route['student-detail/(:any)'] 	= 'admin/student/detail/$1';
+$route['pages']			    		= 'admin/page/index';
+$route['all-blogs']			    		= 'admin/blog/index';
 
 //User
 $route['institute']					= 'home/institute';
@@ -79,3 +81,4 @@ $route['all-detail/(:any)'] 	    	= 'home/users/detail/$1';
 $route['institute-student-detail/(:any)'] 		= 'home/student/detail/$1';
 $route['institute-teacher-detail/(:any)'] 		= 'home/teacher/detail/$1';
 $route['institute-staff-detail/(:any)'] 		= 'home/staff/detail/$1';
+$route['info-page/(:any)'] 		= 'info/index/$1';

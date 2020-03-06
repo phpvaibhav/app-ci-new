@@ -87,6 +87,12 @@
                  <li>
                     <a href="<?= base_url().'student-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'student-all') ? 'active' : '' ?>"><i class="fa fa-child"></i> <span class="nav-label">Students</span></a>
                 </li>
+                <li>
+                    <a href="<?= base_url().'pages';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'pages') ? 'active' : '' ?>"><i class="fa fa-bandcamp"></i> <span class="nav-label">Dynamic Pages</span></a>
+                </li>  
+                <li>
+                    <a href="<?= base_url().'all-blogs';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'all-blogs') ? 'active' : '' ?>"><i class="fa fa-wechat"></i> <span class="nav-label">Blogs</span></a>
+                </li>
             </ul>
 
         </div>

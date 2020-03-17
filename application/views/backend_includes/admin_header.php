@@ -87,7 +87,16 @@
                  <li>
                     <a href="<?= base_url().'student-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'student-all') ? 'active' : '' ?>"><i class="fa fa-child"></i> <span class="nav-label">Students</span></a>
                 </li>
+                
                 <li>
+                    <a href="<?= base_url().'membership-plan';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'membership-plan') ? 'active' : '' ?>"><i class="fa fa-usd"></i> <span class="nav-label">Membership Plan</span></a>
+                </li>  
+
+                <li>
+                    <a href="<?= base_url().'payment-history';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'payment-history') ? 'active' : '' ?>"><i class="fa fa-info"></i> <span class="nav-label">Payment History</span></a>
+                </li>  
+                
+                 <li>
                     <a href="<?= base_url().'pages';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'pages') ? 'active' : '' ?>"><i class="fa fa-bandcamp"></i> <span class="nav-label">Dynamic Pages</span></a>
                 </li>  
                 <li>

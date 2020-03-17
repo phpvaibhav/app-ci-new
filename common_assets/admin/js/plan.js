@@ -29,6 +29,21 @@ $("#form-add").validate({// Rules for form validation
   rules : {
     title : {
       required : true
+    },
+    planFor : {
+      required : true
+    }, 
+  planType : {
+      required : true
+    },  
+    studentCount : {
+      required : true
+    }, 
+  price : {
+      required : true
+    }, 
+ discount : {
+      required : true
     }, 
  
   },
@@ -36,6 +51,21 @@ $("#form-add").validate({// Rules for form validation
   messages : {
         title : {
             required : 'Please enter your title'
+        }, 
+        planFor : {
+            required : 'Please enter your plan for'
+        },   
+         planType : {
+            required : 'Please enter your plan type'
+        }, 
+        studentCount : {
+            required : 'Please enter your no.of students'
+        },  
+        price : {
+            required : 'Please enter your price'
+        }, 
+ discount : {
+            required : 'Please enter your discount'
         }, 
 
     },
@@ -58,7 +88,7 @@ $("#form-add").validate({// Rules for form validation
               setTimeout(function(){  $('#submit').prop('disabled', false); },4000);
               if(res.status=='success'){
                 toastr.success(res.message, 'Success', {timeOut: 3000});
-                setTimeout(function(){window.location = base_url+'pages';; },4000);
+                setTimeout(function(){window.location = base_url+'membership-plan';; },4000);
               //  setTimeout(function(){ window.location = base_url+'jobs';; },4000);
               }else{
                 toastr.error(res.message, 'Alert!', {timeOut: 4000});

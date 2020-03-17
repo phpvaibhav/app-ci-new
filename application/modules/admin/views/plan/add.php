@@ -27,11 +27,11 @@
         			<div class="col-md-6">
 		    			<div class="form-group">
 		            		<div class="col-md-12">
-								<label class="control-label">Role Type</label>
-								<select  name="classId" class="form-control">
+								<label class="control-label">Plan For</label>
+								<select  name="planFor" class="form-control">
 									<option value="" >Select role</option>
-									<option value="1" >Institute</option>
-									<option value="1" >Teacher</option>
+									<option value="Institute" <?= (isset($info['planFor']) &&$info['planFor']=='Institute')  ? "selected='selected'" :""; ?> >Institute</option>
+									<option value="Teacher" <?= (isset($info['planFor']) &&$info['planFor']=='Teacher') ?  "selected='selected'" :""; ?> >Teacher</option>
 									
 								</select>
 		            		</div>
@@ -40,8 +40,23 @@
             		<div class="col-md-6">
 		    			<div class="form-group">
 		            		<div class="col-md-12">
-							<label class="control-label">Number of </label>
-						<input type="text" name="count" placeholder=""  value="" class="form-control" >
+								<label class="control-label">Plan Type</label>
+								<select  name="planType" class="form-control">
+									<option value="" >Select plan</option>
+									<option value="1" <?= (isset($info['planType']) &&$info['planType']=='1') ?  "selected='selected'" :""; ?> >Monthly</option>
+									<option value="2"  <?= (isset($info['planType']) &&$info['planType']=='2') ?  "selected='selected'" :""; ?> >Quarterly</option>
+									<option value="3"  <?= (isset($info['planType']) &&$info['planType']=='3') ?  "selected='selected'" :""; ?> >Half Yearly</option>
+									<option value="4"  <?= (isset($info['planType']) &&$info['planType']=='4') ?  "selected='selected'" :""; ?> >Yearly</option>
+									
+								</select>
+		            		</div>
+		        		</div>	
+            		</div>
+            		<div class="col-md-6">
+		    			<div class="form-group">
+		            		<div class="col-md-12">
+							<label class="control-label">No. Of students</label>
+						<input type="text" name="studentCount" placeholder="No. Of students"  value="<?= isset($info['studentCount']) ? $info['studentCount']:""; ?>" class="form-control number-only" >
 		            		</div>
 		        		</div>	
             		</div>
@@ -50,7 +65,7 @@
 		    			<div class="form-group">
 		            		<div class="col-md-12">
 									<label class="control-label">Price</label>
-									<input type="text" name="price" placeholder="Price"  value="" class="form-control" >
+									<input type="text" name="price" placeholder="Price"  value="<?= isset($info['price']) ? $info['price']:""; ?>" class="form-control floatNumeric" >
 		            		</div>
 		        		</div>	
             		</div>
@@ -58,7 +73,15 @@
 		    			<div class="form-group">
 		            		<div class="col-md-12">
 									<label class="control-label">Discount(%)</label>
-									<input type="text" name="discount" placeholder="Discount(%)"  value="" class="form-control" >
+									<input type="text" name="discount" placeholder="Discount(%)"  value="<?= isset($info['discount']) ? $info['discount']:""; ?>" class="form-control floatNumeric" >
+		            		</div>
+		        		</div>	
+            		</div>
+            		<div class="col-md-6">
+		    			<div class="form-group">
+		            		<div class="col-md-12">
+									<label class="control-label">Order by</label>
+									<input type="text" name="sort_by" placeholder="Order by"  value="<?= isset($info['sort_by']) ? $info['sort_by']:""; ?>" class="form-control number-only" >
 		            		</div>
 		        		</div>	
             		</div>

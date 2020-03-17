@@ -41,7 +41,7 @@ class Plan extends Common_Back_Controller {
         $data['title']      = 'Edit';
         $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css','common_assets/css/plugins/summernote/summernote.css','common_assets/css/plugins/summernote/summernote-bs3.css');
         $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/js/plugins/summernote/summernote.min.js','common_assets/admin/js/plan.js');
-        $data['info'] = $this->common_model->getsingle('pages',array('pageId'=>$id));
+        $data['info'] = $this->common_model->getsingle('membership_plan',array('planId'=>$id));
         $this->load->admin_render('plan/add', $data, '');
     } //End function
     

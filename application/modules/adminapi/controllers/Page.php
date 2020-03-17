@@ -89,8 +89,8 @@ class Page extends Common_Admin_Controller{
 			$description                    = $this->post('description');
 			$data_val['title'] 		 		= $title;
 			$data_val['slug'] 		 		= $slug;
-			$data_val['description'] 		= $description;
-            $data_val['meta_title']        = $this->post('meta_title');
+			$data_val['description'] 		    = $description;
+            $data_val['meta_title']             = $this->post('meta_title');
             $data_val['meta_keyword']        = $this->post('meta_keyword');
             $data_val['meta_description']        = $this->post('meta_description');
             $pageId  = decoding($pageId);

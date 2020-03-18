@@ -95,6 +95,9 @@
                 <li>
                     <a href="<?= base_url().'payment-history';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'payment-history') ? 'active' : '' ?>"><i class="fa fa-info"></i> <span class="nav-label">Payment History</span></a>
                 </li>  
+                  <li>
+                    <a href="<?= base_url().'instrument-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'instrument-all') ? 'active' : '' ?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Instruments</span></a>
+                </li>  
                 
                  <li>
                     <a href="<?= base_url().'pages';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'pages') ? 'active' : '' ?>"><i class="fa fa-bandcamp"></i> <span class="nav-label">Dynamic Pages</span></a>

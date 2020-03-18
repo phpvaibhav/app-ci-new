@@ -67,6 +67,7 @@ $route['pages']			    		= 'admin/page/index';
 $route['all-blogs']			    		= 'admin/blog/index';
 $route['membership-plan']			    		= 'admin/plan/index';
 $route['payment-history']			    		= 'admin/payment/index';
+$route['instrument-all']			    		= 'admin/instrument/index';
 
 //User
 $route['institute']					= 'home/institute';

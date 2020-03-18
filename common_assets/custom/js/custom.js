@@ -40,7 +40,7 @@ function filePreviewImage(input) {
     $('#privew + embed').remove();
     $('#privew + img').remove();
     $('#privew').after('');
-    $('#privew').html('<img src="'+e.target.result+'" class="img img-responsive img-thunbnail"/>');
+    $('#privew').html('<img src="'+e.target.result+'" width="150" height="150" class="img img-responsive img-thunbnail"/>');
   }
   reader.readAsDataURL(input.files[0]);
   }

@@ -12,7 +12,7 @@ class Instrument_model extends CI_Model {
         "Unknown" 
         END) as statusShow','(case when (i.image = "") 
             THEN "common_assets/img/avatars/sunny-big.png" ELSE
-            concat("uploads/instrument/",i.image) 
+            concat("uploads/instrument/thumb/",i.image) 
             END) as image'); //set column field database for datatable orderable
     var $column_search = array('i.name'); //set column field database for datatable searchable 
     var $order = array('i.instrumentId'=> 'DESC');  // default order

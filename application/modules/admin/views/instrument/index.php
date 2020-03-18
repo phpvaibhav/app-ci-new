@@ -83,7 +83,7 @@
 							 	<label class="control-label">Image Privew</label>
 								<!-- image -->
 								<div id="privew">
-									<img src="#"  class="img img-responsive img-thunbnail image_link_pre"/>
+									<img src="#"  class="img img-responsive img-thunbnail image_link_pre" width="150" height="150" />
 								</div>
 							</div>
 							<!-- image -->

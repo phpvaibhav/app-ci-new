@@ -49,6 +49,7 @@ class Admin extends Common_Back_Controller {
           $chart_Data[] = array('label'=>'Contant Pages','link'=>'pages','icon'=>'fa fa-bandcamp','count'=> $this->common_model->get_total_count('pages'));
           $chart_Data[] = array('label'=>'Blogs','link'=>'all-blogs','icon'=>'fa fa-wechat','count'=> $this->common_model->get_total_count('blogs'));
           $chart_Data[] = array('label'=>'Membership Plan','link'=>'membership-plan','icon'=>'fa fa-usd','count'=> $this->common_model->get_total_count('membership_plan'));
+          $chart_Data[] = array('label'=>'Instruments','link'=>'instrument-all','icon'=>'fa fa-picture-o','count'=> $this->common_model->get_total_count('instrument'));
       
      $data['count_list'] = $chart_Data;
         $this->load->admin_render('dashboard', $data, '');

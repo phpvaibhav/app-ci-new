@@ -407,6 +407,32 @@ class Common_model extends CI_Model {
         }
         return $address;
     }//End Function
+    function supportReply($supportId=0){
+       $array = $where = array();
+        $orderId = 'replyId';
+        $orderby = 'desc';
+        if($supportId){
+            $where['supportId'] = $supportId;
+             $orderby = 'asc';
+        }else{
+            $where['userType'] = 1; 
+            $where['admin_read'] = 0; 
+        }
+        $data = $this->getAll('ticket_replies',$where,$orderId,$orderby);
+        if(!empty($data)){
+            $array = $data;
+            foreach ($array as $k => $v) {
+                $array[$k]->supportInfo =   $this->getsingle('support_tickets',array('supportId'=>$v->supportId));
+                if($v->userType){
+                    $array[$k]->userinfo =  $this->userInfo(array('id'=>$v->userId));
+                }else{
+                     $array[$k]->userinfo =  $this->adminInfo(array('id'=>1));
+                }
+            }
+        }
+        return $array;
+
+    }
 
 
 } //end of class

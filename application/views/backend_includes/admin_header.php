@@ -104,6 +104,9 @@
                 </li>  
                 <li>
                     <a href="<?= base_url().'all-blogs';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'all-blogs') ? 'active' : '' ?>"><i class="fa fa-wechat"></i> <span class="nav-label">Blogs</span></a>
+                </li>  
+                <li>
+                    <a href="<?= base_url().'support-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'support-all') ? 'active' : '' ?>"><i class="fa fa-ticket"></i> <span class="nav-label">Support</span></a>
                 </li>
             </ul>
 
@@ -126,59 +129,47 @@
                 <!-- <li>
                     <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
                 </li> -->
-<!--                 <li class="dropdown">
+                <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning"><?= sizeof($supportReply); ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
-                        <li>
+                        <?php if(!empty($supportReply)){ foreach ($supportReply as $s => $r) { ?>
+                             <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    <img alt="image" class="img-circle" src="<?= $r->userinfo['profileImage']; ?>">
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                    <strong><?= $r->userinfo['fullName']; ?></strong>
+                                    <p><?=  substr($r->message,0,50); ?> <a style="font-size: 12px !important;" href="<?php echo  base_url()."support-detail/".encoding($r->supportId);; ?>">Read-more</a></p><br>
+                                    <small class="text-muted"><?=  date(' d.m.Y - h:i A',strtotime($r->crd)); ?> </small>
                                 </div>
                             </div>
                         </li>
                         <li class="divider"></li>
-                        <li>
+                        <?php } }else{ ?>
+                             <li>
                             <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                               
+                                <div class="media-body">
+                               <center>Record not found.</center>
                                 </div>
                             </div>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
+                        <?php } ?>
+                     
                         <li>
                             <div class="text-center link-block">
-                                <a href="mailbox.html">
+                                <a href="<?php echo base_url().'support-all'; ?>">
                                     <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
                                 </a>
                             </div>
                         </li>
                     </ul>
-                </li> -->
+                </li>
 <!--                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>

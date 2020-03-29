@@ -68,6 +68,8 @@ $route['all-blogs']			    		= 'admin/blog/index';
 $route['membership-plan']			    		= 'admin/plan/index';
 $route['payment-history']			    		= 'admin/payment/index';
 $route['instrument-all']			    		= 'admin/instrument/index';
+$route['support-all']			    		= 'admin/support/index';
+$route['support-detail/(:any)']			    		= 'admin/support/detail/$1';
 
 //User
 $route['institute']					= 'home/institute';

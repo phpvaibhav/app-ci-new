@@ -13,9 +13,10 @@ class MY_Loader extends MX_Loader {
         $where                          = array('users.id'=>$session_u_id,'users.status'=>1);//status:0 means active 
         $uData                          = $this->common_model->userInfo($where);
         $company                          = $this->common_model->getsingle('institute',array('instituteId'=>$instituteId));
-       /// pr( $uData  );
+
         $vars['user']                   =  $uData;
         $vars['company']                   =  $company;
+        
         $this->view('frontend_includes/front_header', $vars);
         $this->view($template_name, $vars);
         $this->view('frontend_includes/front_footer', $vars);
@@ -52,7 +53,9 @@ class MY_Loader extends MX_Loader {
         $where                          = array('id'=>$session_u_id,'status'=>1);//status:0 means active 
         $uData                          = $this->common_model->adminInfo($where);
         $vars['user']                   =  $uData;
-      
+           $supportReply                          = $this->common_model->supportReply();
+        $vars['supportReply']                   =  $supportReply;
+       /// pr( $supportReply  );
         $this->view('backend_includes/admin_header', $vars);
         $this->view($template_name, $vars);
         $this->view('backend_includes/admin_footer', $vars);

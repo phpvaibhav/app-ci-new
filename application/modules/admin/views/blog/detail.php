@@ -42,7 +42,12 @@
                             <?php 
                                 $imageL = 'common_assets/img/avatars/1.png';
                                 if(!empty($userBy['profileImage'])){
-                                    $imageL = 'uploads/users/thumb/'.$userBy['profileImage']; 
+                                    if($adminS){
+                                         $imageL = 'uploads/admin/thumb/'.$userBy['profileImage'];
+                                    }else{
+                                         $imageL = 'uploads/users/thumb/'.$userBy['profileImage'];
+                                    }
+                                    
                                 }
                              ?>
                             <div><img src="<?= base_url().$imageL; ?>"  class="img-sm img-rounded" >  <?= $userBy['fullName']; ?></div> 

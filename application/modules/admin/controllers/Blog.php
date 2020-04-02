@@ -58,9 +58,13 @@ class blog extends Common_Back_Controller {
        // $id           = decoding($this->uri->segment(2));
         $info = $this->common_model->getsingle('blogs',array('blogId'=>$id));
         $data['info'] = $info;
+        $data['adminS'] = 0;
         if($info['userId']):
             $data['userBy'] = $this->common_model->getsingle('users',array('id'=>$info['userId']));
+            $data['adminS'] = 0;
         else:
+            
+            $data['adminS'] = 1;
              $data['userBy'] = $this->common_model->getsingle('admin',array('id'=>1));
         endif;
         $data['instrument'] = $this->common_model->getsingle('instrument',array('instrumentId'=>$info['instrumentId']));

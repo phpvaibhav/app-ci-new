@@ -42,7 +42,7 @@
                             <?php 
                                 $imageL = 'common_assets/img/avatars/1.png';
                                 if(!empty($userBy['profileImage'])){
-                                    if($adminS){
+                                    if($adminS==1){
                                          $imageL = 'uploads/admin/thumb/'.$userBy['profileImage'];
                                     }else{
                                          $imageL = 'uploads/users/thumb/'.$userBy['profileImage'];

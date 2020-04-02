@@ -26,7 +26,7 @@ class Blog extends Common_Admin_Controller{
         $row[] = '<img src='.$imageLink.' alt="'.$serData->title.'" class="img-sm img-rounded" >';
         $row[]      = display_placeholder_text($serData->title); 
         $row[]      = display_placeholder_text($serData->instrument); 
-        $row[]      = (display_placeholder_text($serData->fullName)=='NA') ? 'Admin' : display_placeholder_text($serData->fullName); 
+        $row[]      = (display_placeholder_text($serData->fullName)=='NA') ? SITE_NAME : display_placeholder_text($serData->fullName); 
         switch ($serData->status) {
          
             case 1:

@@ -56,10 +56,17 @@ class blog extends Common_Back_Controller {
         $data['breadcrumb'] = $breadcrumb;
         $id           = decoding($this->uri->segment(4));
        // $id           = decoding($this->uri->segment(2));
-        $data['info'] = $this->common_model->getsingle('blogs',array('blogId'=>$id));
+        $info = $this->common_model->getsingle('blogs',array('blogId'=>$id));
+        $data['info'] = $info;
+        if($info['userId']):
+            $data['userBy'] = $this->common_model->getsingle('users',array('id'=>$info['userId']));
+        else:
+             $data['userBy'] = $this->common_model->getsingle('admin',array('id'=>1));
+        endif;
+        $data['instrument'] = $this->common_model->getsingle('instrument',array('instrumentId'=>$info['instrumentId']));
         $data['front_styles']    = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css','common_assets/css/plugins/dataTables/datatables.min.css');
         $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/blog.js');
-        $this->load->admin_render('blog/detail', $data, '');
+        $this->load->admin_render('blog/detail', $data,'');
     }//End Function 
  
 }//End Class

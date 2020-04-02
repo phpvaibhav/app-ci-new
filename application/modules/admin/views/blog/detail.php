@@ -18,36 +18,46 @@
                     </h1>
                 </div>
                 <p>
-                  <?php
-                                        $img = 'common_assets/img/avatars/sunny-big.png';
-                                        if(isset($info['image']) && !empty($info['image'])){
-                                            $img = 'uploads/blog/'.$info['image'];
-                                        }
-
-                                    ?>
-                                    <img src="<?= base_url().$img; ?>"  class="img img-responsive img-thunbnail image_link_pre"  />
+                    <?php
+                        $img = 'common_assets/img/avatars/sunny-big.png';
+                    if(isset($info['image']) && !empty($info['image'])){
+                        $img = 'uploads/blog/'.$info['image'];
+                    }
+                     if(isset($info['image']) && !empty($info['image'])){
+                    ?>
+                    <img src="<?= base_url().$img; ?>"  class="img img-responsive img-thunbnail image_link_pre"  />
+                <?php }?>
                 </p>
               
+                <hr>   
+                                <div class="row">
+                    <div class="col-md-6">
+                            <h5>Tags:</h5>
+                            <button class="btn btn-primary btn-xs" type="button"><?= $instrument['name']; ?></button>
+                         <!--    <button class="btn btn-white btn-xs" type="button">Publishing</button> -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="small text-right">
+                            <h5>Post By:</h5>
+                            <?php 
+                                $imageL = 'common_assets/img/avatars/1.png';
+                                if(!empty($userBy['profileImage'])){
+                                    $imageL = 'uploads/users/thumb/'.$userBy['profileImage']; 
+                                }
+                             ?>
+                            <div><img src="<?= base_url().$imageL; ?>"  class="img-sm img-rounded" >  <?= $userBy['fullName']; ?></div> 
+                          <!--   <div> <i class="fa fa-comments-o"> </i> 56 comments </div> -->
+                          <!--   <i class="fa fa-eye"> </i> 144 views -->
+                        </div>
+                    </div>
+                </div>
+             
                 <hr>                
                 <p>
                     <?= $info['description'];?>
                 </p>
               
                 <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                            <h5>Post by:</h5>
-                            <button class="btn btn-primary btn-xs" type="button">Admin</button>
-                         <!--    <button class="btn btn-white btn-xs" type="button">Publishing</button> -->
-                    </div>
-                    <div class="col-md-6">
-                        <div class="small text-right">
-                          <!--   <h5>Stats:</h5>
-                            <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
-                            <i class="fa fa-eye"> </i> 144 views -->
-                        </div>
-                    </div>
-                </div>
 
 <!--                 <div class="row">
                     <div class="col-lg-12">

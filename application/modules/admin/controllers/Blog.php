@@ -15,6 +15,8 @@ class blog extends Common_Back_Controller {
         );
         $data['breadcrumb'] = $breadcrumb;
         $data['title']      = 'Blogs';
+        $data['front_styles']    = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css','common_assets/css/plugins/dataTables/datatables.min.css');
+        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/blog.js');
         $this->load->admin_render('blog/index', $data, '');
     } //End function
     public function add(){
@@ -24,8 +26,9 @@ class blog extends Common_Back_Controller {
         );
         $data['breadcrumb'] = $breadcrumb;
         $data['title']      = 'Add';
-        $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css','common_assets/css/plugins/summernote/summernote.css','common_assets/css/plugins/summernote/summernote-bs3.css');
-        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/js/plugins/summernote/summernote.min.js','common_assets/admin/js/page.js');
+        $data['front_styles']    = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css','common_assets/css/plugins/dataTables/datatables.min.css');
+        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/blog.js');
+         $data['instruments'] = $this->common_model->getAll('instrument');
         $this->load->admin_render('blog/add', $data, '');
     } //End function
     public function edit(){
@@ -34,12 +37,13 @@ class blog extends Common_Back_Controller {
         "Pages" => ""
         );
          $id           = decoding($this->uri->segment(4));
-
+//pr($id );
         $data['breadcrumb'] = $breadcrumb;
         $data['title']      = 'Edit';
-        $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css','common_assets/css/plugins/summernote/summernote.css','common_assets/css/plugins/summernote/summernote-bs3.css');
-        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/js/plugins/summernote/summernote.min.js','common_assets/admin/js/page.js');
-        $data['info'] = $this->common_model->getsingle('pages',array('pageId'=>$id));
+        $data['front_styles']    = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css','common_assets/css/plugins/dataTables/datatables.min.css');
+        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/blog.js');
+        $data['instruments'] = $this->common_model->getAll('instrument');
+        $data['info'] = $this->common_model->getsingle('blogs',array('blogId'=>$id));
         $this->load->admin_render('blog/add', $data, '');
     } //End function
     
@@ -50,11 +54,11 @@ class blog extends Common_Back_Controller {
         "Blogs" => ""
         );
         $data['breadcrumb'] = $breadcrumb;
+        $id           = decoding($this->uri->segment(4));
        // $id           = decoding($this->uri->segment(2));
-      
-      
-        $data['front_styles']    = array('common_assets/css/plugins/dataTables/datatables.min.css');
-        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/page.js');
+        $data['info'] = $this->common_model->getsingle('blogs',array('blogId'=>$id));
+        $data['front_styles']    = array('common_assets/css/plugins/jasny/jasny-bootstrap.min.css','common_assets/css/plugins/dataTables/datatables.min.css');
+        $data['front_scripts']    = array('common_assets/js/plugins/dataTables/datatables.min.js','common_assets/admin/js/blog.js');
         $this->load->admin_render('blog/detail', $data, '');
     }//End Function 
  

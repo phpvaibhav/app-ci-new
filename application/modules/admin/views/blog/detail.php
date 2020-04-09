@@ -12,7 +12,7 @@
                     <button class="btn btn-white btn-xs" type="button">Modern</button> -->
                 </div>
                 <div class="text-center article-title">
-                <span class="text-muted"><i class="fa fa-clock-o"></i> <?= date('d.m.Y',strtotime($info['crd'])); ?></span>
+                <span class="text-muted"><i class="fa fa-clock-o"></i> <?= date('h:i A ,d M Y',strtotime($info['crd'])); ?></span>
                     <h1>
                        <?= $info['title'];?>
                     </h1>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="small text-right">
-                            <h5>Post By:</h5>
+                            <h5>Posted By:</h5>
                             <?php 
                                 $imageL = 'common_assets/img/avatars/1.png';
                                 if(!empty($userBy['profileImage'])){

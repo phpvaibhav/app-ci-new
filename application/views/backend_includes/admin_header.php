@@ -108,6 +108,10 @@
                 <li>
                     <a href="<?= base_url().'support-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'support-all') ? 'active' : '' ?>"><i class="fa fa-ticket"></i> <span class="nav-label">Support</span></a>
                 </li>
+                 <li>
+                    <a href="<?= base_url().'tutorial-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'tutorial-all') ? 'active' : '' ?>"><i class="fa fa-tag"></i> <span class="nav-label">Tutorial</span></a>
+                </li>
+                
             </ul>
 
         </div>

@@ -73,44 +73,79 @@
                             $firstChar = mb_substr(SITE_NAME,0,1, "UTF-8");
                             echo $firstChar ;
                          ?>
+                           <?php $fetch_class = strtolower($this->router->fetch_class());
+
+                         
+                            ?>
                     </div>
                 </li>
-                <li>
-                    <a href="<?= base_url().'dashboard';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'dashboard') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                <li class="<?php echo (strtolower($this->router->fetch_class()) == 'admin') ? 'active' : '' ?>">
+                    <a href="<?= base_url().'dashboard';?>" ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
-                <li>
-                    <a href="<?= base_url().'institute-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-all') ? 'active' : '' ?>"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Institutes</span></a>
+                 <li <?= in_array($fetch_class,array('institute','teacher','student'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-users"></i> <span class="nav-label">Users Management </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'institute') ? 'active' : '' ?>"><a href="<?= base_url().'institute-all';?>"><i class="fa fa-graduation-cap"></i> Institutes</a></li>
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher') ? 'active' : '' ?>"><a href="<?= base_url().'teacher-all';?>"><i class="fa fa-vcard"></i> Teachers</a></li>
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'student') ? 'active' : '' ?>"><a href="<?= base_url().'student-all';?>"><i class="fa fa-child"></i> Students</a></li>
+                       
+                    </ul>
                 </li>
-                <li>
-                    <a href="<?= base_url().'teacher-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher-all') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
+                <li <?= in_array($fetch_class,array('plan','payment'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-money"></i> <span class="nav-label">Payment</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'plan') ? 'active' : '' ?>"><a href="<?= base_url().'membership-plan';?>"><i class="fa fa-usd"></i> Membership Plan</a></li>
+                      <li class="<?php echo (strtolower($this->router->fetch_class()) == 'payment') ? 'active' : '' ?>"><a href="<?= base_url().'payment-history';?>"><i class="fa fa-info"></i> Payment History</a></li>
+                     
+                       
+                    </ul>
                 </li>
-                 <li>
-                    <a href="<?= base_url().'student-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'student-all') ? 'active' : '' ?>"><i class="fa fa-child"></i> <span class="nav-label">Students</span></a>
-                </li>
-                
-                <li>
-                    <a href="<?= base_url().'membership-plan';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'membership-plan') ? 'active' : '' ?>"><i class="fa fa-usd"></i> <span class="nav-label">Membership Plan</span></a>
+                <li class="<?php echo (strtolower($this->router->fetch_class()) == 'support') ? 'active' : '' ?>">
+                <a href="<?= base_url().'support-all';?>" ><i class="fa fa-ticket"></i> <span class="nav-label">Support</span></a>
+                </li>  
+                <li class="<?php echo (strtolower($this->router->fetch_class()) == 'blog') ? 'active' : '' ?>">
+                <a href="<?= base_url().'all-blogs';?>" ><i class="fa fa-wechat"></i> <span class="nav-label">Blogs</span></a>
                 </li>  
 
+                <li <?= in_array($fetch_class,array('page','instrument','tutorial'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-cogs"></i> <span class="nav-label">Content Management</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'page') ? 'active' : '' ?>"><a href="<?= base_url().'pages';?>"><i class="fa fa-bandcamp"></i> Dynamic Pages</a></li>
+                      <li class="<?php echo (strtolower($this->router->fetch_class()) == 'instrument') ? 'active' : '' ?>"><a href="<?= base_url().'instrument-all';?>"><i class="fa fa-music"></i> Instruments</a></li>
+                     <li class="<?php echo (strtolower($this->router->fetch_class()) == 'tutorial') ? 'active' : '' ?>"><a href="<?= base_url().'tutorial-all';?>"><i class="fa fa-tag"></i> Tutorial</a></li>
+                     
+                       
+                    </ul>
+                </li>
+               <!--  <li>
+                    <a href="<?= base_url().'institute-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-all') ? 'active' : '' ?>"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Institutes</span></a>
+                </li> -->
+              <!--   <li>
+                    <a href="<?= base_url().'teacher-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher-all') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
+                </li> -->
+               <!--   <li>
+                    <a href="<?= base_url().'student-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'student-all') ? 'active' : '' ?>"><i class="fa fa-child"></i> <span class="nav-label">Students</span></a>
+                </li> -->
+             
+              <!--   <li>
+                    <a href="<?= base_url().'membership-plan';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'membership-plan') ? 'active' : '' ?>"><i class="fa fa-usd"></i> <span class="nav-label">Membership Plan</span></a>
+                </li>   -->
+<!-- 
                 <li>
                     <a href="<?= base_url().'payment-history';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'payment-history') ? 'active' : '' ?>"><i class="fa fa-info"></i> <span class="nav-label">Payment History</span></a>
-                </li>  
-                  <li>
+                </li>   -->
+                <!--   <li>
                     <a href="<?= base_url().'instrument-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'instrument-all') ? 'active' : '' ?>"><i class="fa fa-music"></i> <span class="nav-label">Instruments</span></a>
                 </li>  
                 
                  <li>
                     <a href="<?= base_url().'pages';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'pages') ? 'active' : '' ?>"><i class="fa fa-bandcamp"></i> <span class="nav-label">Dynamic Pages</span></a>
-                </li>  
-                <li>
-                    <a href="<?= base_url().'all-blogs';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'all-blogs') ? 'active' : '' ?>"><i class="fa fa-wechat"></i> <span class="nav-label">Blogs</span></a>
-                </li>  
-                <li>
-                    <a href="<?= base_url().'support-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'support-all') ? 'active' : '' ?>"><i class="fa fa-ticket"></i> <span class="nav-label">Support</span></a>
-                </li>
+                </li> -->
+<!-- 
+
                  <li>
                     <a href="<?= base_url().'tutorial-all';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'tutorial-all') ? 'active' : '' ?>"><i class="fa fa-tag"></i> <span class="nav-label">Tutorial</span></a>
-                </li>
+                </li> -->
                 
             </ul>
 

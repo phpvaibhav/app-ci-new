@@ -52,7 +52,10 @@
                     }
 
                 ?>
-            
+             <?php $fetch_class = strtolower($this->router->fetch_class());
+
+                         
+                            ?>
                <a href="<?= base_url().'institute';?>"><img src="<?php echo $logo; ?>" class="m-t" width="200" height="50" alt="<?=  $firstChar; ?>"></a>
             </div>
             <ul class="nav metismenu" id="side-menu">
@@ -84,11 +87,26 @@
                          ?>
                     </div>
                 </li>
-                <li>
-                    <a href="<?= base_url().'institute';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute') ? 'active' : '' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                <li class="<?php echo (strtolower($this->router->fetch_class()) == 'home') ? 'active' : '' ?>">
+                    <a href="<?= base_url().'institute';?>" ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
+              <!--   <li>
+                <?= $fetch_class; ?>
+                </li> -->
                 <?php if($user['roleId']==1): ?> 
-                <li>
+                  <li <?= in_array($fetch_class,array('staff','teacher','student','parents'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-users"></i> <span class="nav-label">Users Management </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                      
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'teacher') ? 'active' : '' ?>"><a href="<?= base_url().'teachers';?>"><i class="fa fa-vcard"></i> Teachers</a></li>
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'student') ? 'active' : '' ?>"><a href="<?= base_url().'students';?>"><i class="fa fa-child"></i> Students</a></li>
+                       <li class="<?php echo (strtolower($this->router->fetch_class()) == 'staff') ? 'active' : '' ?>"><a href="<?= base_url().'staff';?>"><i class="fa fa-group"></i> Staff</a></li>
+                       <li class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><a href="<?= base_url().'parents';?>"><i class="fa fa-home"></i> Parents</a></li>
+                       
+                       
+                    </ul>
+                </li>   
+              <!--   <li>
                     <a href="<?= base_url().'teachers';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teachers') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
                 </li>
                 <li>
@@ -99,7 +117,7 @@
                 </li>
                 <li>
                     <a href="<?= base_url().'parents';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><i class="fa fa-home"></i> <span class="nav-label">Parents</span></a>
-                </li>  
+                </li>   -->
                 <li>
                     <a href="<?= base_url().'institute-class';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-class') ? 'active' : '' ?>"><i class="fa fa-folder-o"></i> <span class="nav-label">Institute class</span></a>
                 </li>

@@ -88,3 +88,11 @@ $route['institute-student-detail/(:any)'] 		= 'home/student/detail/$1';
 $route['institute-teacher-detail/(:any)'] 		= 'home/teacher/detail/$1';
 $route['institute-staff-detail/(:any)'] 		= 'home/staff/detail/$1';
 $route['info-page/(:any)'] 		= 'info/index/$1';
+
+$route['all-blogs-institute']			    		= 'home/blog/index';
+$route['membership-plan-institute']			    		= 'home/plan/index';
+$route['payment-history-institute']			    		= 'home/payment/index';
+
+$route['support-institute']			    		= 'home/support/index';
+
+$route['support-detail-institute/(:any)']			    		= 'home/support/detail/$1';

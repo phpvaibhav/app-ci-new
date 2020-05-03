@@ -6,7 +6,7 @@ class Support_model extends CI_Model {
     //var $table , $column_order, $column_search , $order =  '';
     var $table = 'support_tickets';
     var $column_order = array('t.supportId','t.ticketNumber','t.title','t.message','t.resolved'); //set column field database for datatable orderable
-    var $column_sel = array('t.supportId','t.ticketNumber','t.title','t.userType','t.message','t.resolved','t.crd','(case when (t.resolved = 0) 
+    var $column_sel = array('t.supportId','t.ticketNumber','t.title','t.message','t.resolved','t.userType','t.crd','(case when (t.resolved = 0) 
         THEN "Pending" when (t.resolved = 1) 
         THEN "Resolved"  ELSE
         "Unknown" 

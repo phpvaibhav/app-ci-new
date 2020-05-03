@@ -1,20 +1,28 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Support_model extends CI_Model {
-
+class Plan_model extends CI_Model {
+       
     //var $table , $column_order, $column_search , $order =  '';
-    var $table = 'support_tickets';
-    var $column_order = array('t.supportId','t.ticketNumber','t.title','t.message','t.resolved'); //set column field database for datatable orderable
-    var $column_sel = array('t.supportId','t.ticketNumber','t.title','t.userType','t.message','t.resolved','t.crd','(case when (t.resolved = 0) 
-        THEN "Pending" when (t.resolved = 1) 
-        THEN "Resolved"  ELSE
+    var $table = 'membership_plan';
+    var $column_order = array('planId','title','planType','planFor','price','discount','studentCount','status'); //set column field database for datatable orderable
+    var $column_sel = array('planId','title','planType','planFor','price','discount','studentCount','status','description','status','(case when (status = 0) 
+        THEN "Inactive" when (status = 1) 
+        THEN "Active" ELSE
         "Unknown" 
-        END) as statusShow'); //set column field database for datatable orderable
-    var $column_search = array('t.supportId','t.ticketNumber','t.title'); //set column field database for datatable searchable 
-    var $order = array('t.supportId'=> 'DESC');  // default order
+        END) as statusShow','(case when (planType = 0) 
+        THEN "Unknown" when (planType = 1) 
+        THEN "Monthly" when (planType = 2) 
+        THEN "Quarterly" when (planType = 3) 
+        THEN "Half Yearly"when (planType = 4) 
+        THEN "Yearly" ELSE
+        "Unknown" 
+        END) as planShow'); //set column field database for datatable orderable
+
+    var $column_search = array('title'); //set column field database for datatable searchable 
+    var $order = array('planId' => 'desc');  // default order
     var $where = array();
-    var $group_by = 't.supportId'; 
+    var $group_by = 'planId'; 
 
     public function __construct(){
         parent::__construct();
@@ -28,8 +36,7 @@ class Support_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from('support_tickets as t');
-    
+        $this->db->from($this->table);
         $i = 0;
         foreach ($this->column_search as $emp) // loop column 
         {
@@ -106,9 +113,18 @@ class Support_model extends CI_Model {
 
     public function count_all()
     {
-        $this->db->from('support_tickets as t');
-        if(!empty($this->where))
+        $this->db->from($this->table);
+         if(!empty($this->where))
             $this->db->where($this->where); 
         return $this->db->count_all_results();
     }
+
+    public function userDetails($data){
+    	$this->db->select('*');
+    	$this->db->from($this->table);
+    	$this->db->where(array('id'=>$data['id']));
+    	$query = $this->db->get();
+    	return $query->row();
+    }
+
 }

@@ -1,20 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Support_model extends CI_Model {
+class Blog_model extends CI_Model {
 
     //var $table , $column_order, $column_search , $order =  '';
-    var $table = 'support_tickets';
-    var $column_order = array('t.supportId','t.ticketNumber','t.title','t.message','t.resolved'); //set column field database for datatable orderable
-    var $column_sel = array('t.supportId','t.ticketNumber','t.title','t.userType','t.message','t.resolved','t.crd','(case when (t.resolved = 0) 
-        THEN "Pending" when (t.resolved = 1) 
-        THEN "Resolved"  ELSE
+    var $table = 'blogs';
+    var $column_order = array('b.blogId','b.title','in.name','u.fullName','b.status'); //set column field database for datatable orderable
+    var $column_sel = array('b.blogId','b.title','in.name as instrument','u.fullName','b.status','b.status','(case when (b.status = 0) 
+        THEN "Pending" when (b.status = 1) 
+        THEN "Approved"  ELSE
         "Unknown" 
-        END) as statusShow'); //set column field database for datatable orderable
-    var $column_search = array('t.supportId','t.ticketNumber','t.title'); //set column field database for datatable searchable 
-    var $order = array('t.supportId'=> 'DESC');  // default order
+        END) as statusShow','(case when (b.image = "") 
+            THEN "common_assets/img/avatars/sunny-big.png" ELSE
+            concat("uploads/blog/thumb/",b.image) 
+            END) as image'); //set column field database for datatable orderable
+    var $column_search = array('u.firstName','b.title','u.email','in.name',); //set column field database for datatable searchable 
+    var $order = array('b.blogId'=> 'DESC');  // default order
     var $where = array();
-    var $group_by = 't.supportId'; 
+    var $group_by = 'b.blogId'; 
 
     public function __construct(){
         parent::__construct();
@@ -28,7 +31,9 @@ class Support_model extends CI_Model {
     {
         $sel_fields = array_filter($this->column_sel); 
         $this->db->select($sel_fields);
-        $this->db->from('support_tickets as t');
+        $this->db->from('blogs as b');
+        $this->db->join('instrument as in','b.instrumentId=in.instrumentId','left');
+        $this->db->join('users as u','u.id=b.userId','left');
     
         $i = 0;
         foreach ($this->column_search as $emp) // loop column 
@@ -106,7 +111,9 @@ class Support_model extends CI_Model {
 
     public function count_all()
     {
-        $this->db->from('support_tickets as t');
+        $this->db->from('blogs as b');
+        $this->db->join('instrument as in','b.instrumentId=in.instrumentId','left');
+        $this->db->join('users as u','u.id=b.userId','left');
         if(!empty($this->where))
             $this->db->where($this->where); 
         return $this->db->count_all_results();

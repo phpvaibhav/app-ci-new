@@ -1,16 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //General service API class 
-class Support extends Common_Admin_Controller{
+class Support extends Common_Service_Controller{
     
     public function __construct(){
         parent::__construct();
-  		$this->check_admin_service_auth();
+  		$this->check_service_auth();
         $this->load->model('support_model'); //load image model
     }
     public function list_post(){
         $this->load->helper('text');
         $this->load->model('support_model');
-        $this->support_model->set_data();
+        $id = $this->post('id');
+        $this->support_model->set_data(array('t.userId'=>$id));
         $list   = $this->support_model->get_list();
         
         $data   = array();
@@ -23,7 +24,7 @@ class Support extends Common_Admin_Controller{
         $row[]      = $no;
         $row[]      = display_placeholder_text($serData->ticketNumber); 
         $row[]      = display_placeholder_text($serData->title); 
-        $row[]      = $serData->userType ?'User':'Admin'; 
+        $row[]      = $serData->userType ? 'Self':'Admin'; 
         $row[]      = display_placeholder_text(date('d-m-Y',strtotime($serData->crd))); 
         switch ($serData->resolved) {
          
@@ -45,14 +46,14 @@ class Support extends Common_Admin_Controller{
 
           //  $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change status!" data-id="'.encoding($serData->instrumentId).'" data-url="adminapi/instrument/instrumentStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-check" aria-hidden="true"></i></a>';
         }else{
-            $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change resolve ticket!" data-id="'.encoding($serData->supportId).'" data-url="adminapi/support/supportStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-check" aria-hidden="true"></i></a>&nbsp;&nbsp;|';
+           /* $action .= '<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to change resolve ticket!" data-id="'.encoding($serData->supportId).'" data-url="apiv1/support/supportStatus" data-list="1"  class="on-default edit-row table_action" title="Status"><i class="fa fa-check" aria-hidden="true"></i></a>&nbsp;&nbsp;|';*/
         }
     
-        $linkDetail = base_url()."support-detail/".encoding($serData->supportId);
+        $linkDetail = base_url()."support-detail-institute/".encoding($serData->supportId);
         
          $action .= '&nbsp;&nbsp;<a href="'.$linkDetail.'"  class="on-default edit-row table_action"><i class="fa fa-eye" aria-hidden="true"></i></a>'; 
         
-         $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to delete this record!" data-id="'.encoding($serData->supportId).'" data-url="adminapi/support/supportDelete" data-list="1"  class="on-default edit-row table_action" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+       /*  $action .= '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="'.$link.'" onclick="confirmAction(this);" data-message="You want to delete this record!" data-id="'.encoding($serData->supportId).'" data-url="apiv1/support/supportDelete" data-list="1"  class="on-default edit-row table_action" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>';*/
 
         $row[]  = $action;
         $data[] = $row;
@@ -86,9 +87,8 @@ class Support extends Common_Admin_Controller{
 		
 			
 			$data_val['title'] 		 		= $title;
+			$data_val['userType'] 		 		= 1;
 			$data_val['userId'] 		 		= $userId;
-			$data_val['userId'] 		 		= $userId;
-			$data_val['message'] 		 		= $description;
 			$data_val['message'] 		 		= $description;
 			$data_val['ticketNumber'] 		 		= round(111111,999999);
 		       // profile pic upload
@@ -148,6 +148,7 @@ class Support extends Common_Admin_Controller{
             $data_val['supportId'] = $supportId;
             $data_val['message']  = $this->post('message');
             $data_val['userType']  = $this->post('userType');
+            $data_val['userId']  = $this->post('userId');
             $lastId      = $this->common_model->insertData('ticket_replies',$data_val);
             if($lastId){
                   $response       = array('status'=>SUCCESS,'message'=>ResponseMessages::getStatusCodeMessage(122));

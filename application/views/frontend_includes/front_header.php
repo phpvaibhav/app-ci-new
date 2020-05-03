@@ -106,6 +106,35 @@
                        
                     </ul>
                 </li>   
+                  <li class="">
+                    <a href="javascript:void(0);" ><i class="fa fa-diamond"></i> <span class="nav-label">Events</span></a>
+                </li>
+                <li <?= in_array($fetch_class,array('plan','payment'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-money"></i> <span class="nav-label">Membership</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'plan') ? 'active' : '' ?>"><a href="javascript:void(0);"><i class="fa fa-usd"></i> Membership Plan</a></li>
+                      <li class="<?php echo (strtolower($this->router->fetch_class()) == 'payment') ? 'active' : '' ?>"><a href="<?= base_url().'payment-history-institute';?>"><i class="fa fa-info"></i> Payment History</a></li>
+                     
+                       
+                    </ul>
+                </li>
+                 <li class="<?php echo (strtolower($this->router->fetch_class()) == 'support') ? 'active' : '' ?>">
+                <a href="<?= base_url().'support-institute';?>" ><i class="fa fa-ticket"></i> <span class="nav-label">Support</span></a>
+                </li>  
+                <li class="<?php echo (strtolower($this->router->fetch_class()) == 'blog') ? 'active' : '' ?>">
+                <a href="<?= base_url().'all-blogs-institute';?>" ><i class="fa fa-wechat"></i> <span class="nav-label">Blogs</span></a>
+                </li>  
+                <li <?= in_array($fetch_class,array('media','instituteclass'))?"class='active'":"" ?>>
+                    <a href="javascript:void(0);"><i class="fa fa-cogs"></i> <span class="nav-label">Content Management</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="<?php echo (strtolower($this->router->fetch_class()) == 'instituteclass') ? 'active' : '' ?>"><a href="<?= base_url().'institute-class';?>"><i class="fa fa-folder-o"></i> Institute class</a></li>
+                      <li class="<?php echo (strtolower($this->router->fetch_class()) == 'media') ? 'active' : '' ?>"><a href="<?= base_url().'media-library';?>"><i class="fa fa-image"></i> Media Library</a></li>
+                  
+                     
+                       
+                    </ul>
+                </li>
+
               <!--   <li>
                     <a href="<?= base_url().'teachers';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'teachers') ? 'active' : '' ?>"><i class="fa fa-vcard"></i> <span class="nav-label">Teachers</span></a>
                 </li>
@@ -119,8 +148,8 @@
                     <a href="<?= base_url().'parents';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'parents') ? 'active' : '' ?>"><i class="fa fa-home"></i> <span class="nav-label">Parents</span></a>
                 </li>   -->
                 <li>
-                    <a href="<?= base_url().'institute-class';?>" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-class') ? 'active' : '' ?>"><i class="fa fa-folder-o"></i> <span class="nav-label">Institute class</span></a>
-                </li>
+                    <a href="javascript:void(0);" class="<?php echo (strtolower($this->router->fetch_class()) == 'institute-class') ? 'active' : '' ?>"><i class="fa fa-lock"></i> <span class="nav-label">User Access Management</span></a>
+                </li> 
                 <?php endif; ?>
              
 
